@@ -1,0 +1,14 @@
+package com.github.pavlospt.refactoredumbrella.repo
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class GithubRepoModel(
+    val id: Int,
+    val name: String,
+    @Json(name = "stargazers_count")
+    val stars: Int,
+    @Json(name = "html_url")
+    val url: String
+) : DomainModel
