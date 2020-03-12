@@ -19,5 +19,4 @@ class RefactoredUmbrellaApp : Application() {
             modules(dbModule, networkModule, useCaseModule, viewModelModule)
         }
     }
-
 }

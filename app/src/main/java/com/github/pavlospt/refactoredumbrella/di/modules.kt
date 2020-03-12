@@ -13,16 +13,15 @@ import com.github.pavlospt.refactoredumbrella.repo.remote.RealGithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.DashboardViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
+import java.util.Date
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
-import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.*
 
 val dbModule = module {
     single {
