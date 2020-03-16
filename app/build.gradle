@@ -78,4 +78,6 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-fragment:$koin_version"
     implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    implementation "io.coil-kt:coil:0.9.5"
 }

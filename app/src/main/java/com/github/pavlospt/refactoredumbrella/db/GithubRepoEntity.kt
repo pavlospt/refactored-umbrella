@@ -11,5 +11,6 @@ data class GithubRepoEntity(
     val remoteId: Int,
     val name: String,
     val stars: Int,
-    val url: String
+    val url: String,
+    val ownerAvatarUrl: String
 ) : DomainEntity

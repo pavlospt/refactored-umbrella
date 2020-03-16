@@ -1,34 +1,40 @@
 package com.github.pavlospt.refactoredumbrella.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
-import kotlinx.coroutines.flow.collect
+import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(
     private val refreshGithubReposUseCase: RefreshGithubReposUseCase,
-    private val observeGithubReposUseCase: ObserveGithubReposUseCase
+    observeGithubReposUseCase: ObserveGithubReposUseCase
 ) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
+    private val _githubRepos = observeGithubReposUseCase
+        .observe()
+        .map { reposList ->
+            reposList
+                .sortedByDescending { it.stars }
+                .map {
+                    GithubRepoItem(
+                        repoId = it.remoteId,
+                        name = it.name,
+                        stars = it.stars,
+                        url = it.url,
+                        ownerAvatarUrl = it.ownerAvatarUrl
+                    )
+                }
+        }
+        .asLiveData(viewModelScope.coroutineContext)
 
-    val text: LiveData<String> = _text
+    val githubRepos: LiveData<List<GithubRepoItem>>
+        get() = _githubRepos
 
     init {
         viewModelScope.launch {
             refreshGithubReposUseCase(RefreshGithubReposUseCase.Params(username = "pavlospt"))
-        }
-
-        viewModelScope.launch {
-            observeGithubReposUseCase.observe().collect {
-                it.forEach { repo -> println(repo.name) }
-            }
         }
 
         observeGithubReposUseCase(Unit)

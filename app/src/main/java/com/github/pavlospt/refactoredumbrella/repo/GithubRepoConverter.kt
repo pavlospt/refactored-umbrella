@@ -7,6 +7,7 @@ object GithubRepoConverter : DomainModelToEntityConverter<GithubRepoModel, Githu
         remoteId = input.id,
         name = input.name,
         stars = input.stars,
-        url = input.url
+        url = input.url,
+        ownerAvatarUrl = input.owner.avatarUrl
     )
 }

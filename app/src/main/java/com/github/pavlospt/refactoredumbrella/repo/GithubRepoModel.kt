@@ -10,5 +10,13 @@ data class GithubRepoModel(
     @Json(name = "stargazers_count")
     val stars: Int,
     @Json(name = "html_url")
-    val url: String
+    val url: String,
+    @Json(name = "owner")
+    val owner: GithubRepoOwner
 ) : DomainModel
+
+@JsonClass(generateAdapter = true)
+data class GithubRepoOwner(
+    @Json(name = "avatar_url")
+    val avatarUrl: String
+)
