@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -32,11 +33,26 @@ class DashboardViewModel(
     val githubRepos: LiveData<List<GithubRepoItem>>
         get() = _githubRepos
 
+    private val _intentChannel = ConflatedBroadcastChannel<ViewIntent>()
+
     init {
-        viewModelScope.launch {
-            refreshGithubReposUseCase(RefreshGithubReposUseCase.Params(username = "pavlospt"))
-        }
+        _intentChannel
+            .asFlow()
+            .onEach { viewIntent ->
+                when (viewIntent) {
+                    ViewIntent.Refresh -> refreshRepos()
+                }
+            }
+            .launchIn(viewModelScope)
+
+        viewModelScope.launch { refreshRepos() }
 
         observeGithubReposUseCase(Unit)
+    }
+
+    suspend fun processIntent(intent: ViewIntent) = _intentChannel.send(intent)
+
+    private suspend fun refreshRepos() {
+        refreshGithubReposUseCase(RefreshGithubReposUseCase.Params(username = "pavlospt"))
     }
 }
