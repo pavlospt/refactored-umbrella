@@ -6,7 +6,6 @@ import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 class DashboardViewModel(
     private val refreshGithubReposUseCase: RefreshGithubReposUseCase,
@@ -33,24 +32,23 @@ class DashboardViewModel(
     val githubRepos: LiveData<List<GithubRepoItem>>
         get() = _githubRepos
 
-    private val _intentChannel = ConflatedBroadcastChannel<ViewIntent>()
+    private val _intentChannel = ConflatedBroadcastChannel<DashboardViewIntent>()
 
     init {
         _intentChannel
             .asFlow()
             .onEach { viewIntent ->
                 when (viewIntent) {
-                    ViewIntent.Refresh -> refreshRepos()
+                    DashboardViewIntent.Refresh -> refreshRepos()
                 }
             }
             .launchIn(viewModelScope)
 
-        viewModelScope.launch { refreshRepos() }
-
         observeGithubReposUseCase(Unit)
     }
 
-    suspend fun processIntent(intent: ViewIntent) = _intentChannel.send(intent)
+    suspend fun processIntent(intentDashboard: DashboardViewIntent) =
+        _intentChannel.send(intentDashboard)
 
     private suspend fun refreshRepos() {
         refreshGithubReposUseCase(RefreshGithubReposUseCase.Params(username = "pavlospt"))

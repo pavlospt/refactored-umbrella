@@ -33,8 +33,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         binding.reposListPtr
             .refreshes()
-            .map { ViewIntent.Refresh }
-            .onEach { dashboardViewModel.processIntent(intent = it) }
+            .map { DashboardViewIntent.Refresh }
+            .onEach { dashboardViewModel.processIntent(intentDashboard = it) }
             .launchIn(lifecycleScope)
     }
 

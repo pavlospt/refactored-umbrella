@@ -1,13 +1,41 @@
 package com.github.pavlospt.refactoredumbrella.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.github.pavlospt.refactoredumbrella.repo.AddRepoUseCase
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.*
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val addRepoUseCase: AddRepoUseCase
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _intentChannel = ConflatedBroadcastChannel<HomeViewIntent>()
+
+    private val _uiEvents: MutableLiveData<HomeUIEvent> = MutableLiveData()
+    val uiEvents: LiveData<HomeUIEvent>
+        get() = _uiEvents
+
+    init {
+        _intentChannel
+            .asFlow()
+            .onEach { viewIntent ->
+                when (viewIntent) {
+                    is HomeViewIntent.AddGithubRepo -> addGithubRepo(githubRepo = viewIntent)
+                }
+            }
+            .launchIn(viewModelScope)
     }
-    val text: LiveData<String> = _text
+
+    suspend fun processIntent(intentHome: HomeViewIntent) = _intentChannel.send(intentHome)
+
+    private suspend fun addGithubRepo(githubRepo: HomeViewIntent.AddGithubRepo) {
+        addRepoUseCase(
+            AddRepoUseCase.Params(
+                repoName = githubRepo.repoName,
+                repoStars = githubRepo.repoStars
+            )
+        )
+
+        _uiEvents.value = HomeUIEvent.RepoAdded
+    }
 }

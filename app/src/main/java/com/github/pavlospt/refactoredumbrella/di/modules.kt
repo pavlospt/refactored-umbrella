@@ -3,6 +3,7 @@ package com.github.pavlospt.refactoredumbrella.di
 import androidx.room.Room
 import com.github.pavlospt.refactoredumbrella.db.GithubAppDB
 import com.github.pavlospt.refactoredumbrella.interactor.AppCoroutineDispatchers
+import com.github.pavlospt.refactoredumbrella.repo.AddRepoUseCase
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.local.GithubLocalRepo
@@ -11,6 +12,7 @@ import com.github.pavlospt.refactoredumbrella.repo.remote.GithubAPIService
 import com.github.pavlospt.refactoredumbrella.repo.remote.GithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.repo.remote.RealGithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.DashboardViewModel
+import com.github.pavlospt.refactoredumbrella.ui.home.HomeViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import java.util.Date
@@ -86,13 +88,19 @@ val useCaseModule = module {
             githubLocalRepo = get()
         )
     }
+
+    factory {
+        AddRepoUseCase(
+            appCoroutineDispatchers = get(),
+            githubLocalRepo = get()
+        )
+    }
 }
 
 val viewModelModule = module {
     viewModel {
-        DashboardViewModel(
-            refreshGithubReposUseCase = get(),
-            observeGithubReposUseCase = get()
-        )
+        DashboardViewModel(refreshGithubReposUseCase = get(), observeGithubReposUseCase = get())
     }
+
+    viewModel { HomeViewModel(addRepoUseCase = get()) }
 }

@@ -7,7 +7,8 @@ const val GITHUB_REPO_TABLE_NAME = "github_users"
 
 @Entity(tableName = GITHUB_REPO_TABLE_NAME)
 data class GithubRepoEntity(
-    @PrimaryKey val internalId: Int? = null,
+    val internalId: Int? = null,
+    @PrimaryKey
     val remoteId: Int,
     val name: String,
     val stars: Int,

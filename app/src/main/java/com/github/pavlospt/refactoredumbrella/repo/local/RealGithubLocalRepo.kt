@@ -12,7 +12,6 @@ class RealGithubLocalRepo(private val githubRepoDao: GithubRepoDao) : GithubLoca
         githubRepoDao.observeGithubRepos()
 
     override suspend fun updateRepos(updatedGithubRepoEntities: List<GithubRepoEntity>) {
-        githubRepoDao.deleteAllRepos()
         githubRepoDao.addRepos(updatedRepos = updatedGithubRepoEntities)
     }
 }
