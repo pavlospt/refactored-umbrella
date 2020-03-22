@@ -21,4 +21,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Build debug and check
-        run: ./gradlew check detekt
+        run: ./gradlew check detekt testDebugUnitTest
