@@ -1,11 +1,17 @@
 package com.github.pavlospt.refactoredumbrella.ui.dashboard
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 
 class DashboardViewModel(
     private val refreshGithubReposUseCase: RefreshGithubReposUseCase,

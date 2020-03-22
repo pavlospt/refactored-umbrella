@@ -6,7 +6,11 @@ import com.github.pavlospt.refactoredumbrella.repo.GithubRepoModel
 import com.github.pavlospt.refactoredumbrella.repo.GithubRepoOwner
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
-import com.github.pavlospt.refactoredumbrella.test.*
+import com.github.pavlospt.refactoredumbrella.test.CoroutinesTestRule
+import com.github.pavlospt.refactoredumbrella.test.MockGithubLocalRepo
+import com.github.pavlospt.refactoredumbrella.test.MockGithubRemoteRepo
+import com.github.pavlospt.refactoredumbrella.test.UnitTest
+import com.github.pavlospt.refactoredumbrella.test.observeForTesting
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule

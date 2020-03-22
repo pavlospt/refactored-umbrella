@@ -1,8 +1,8 @@
 package com.github.pavlospt.refactoredumbrella.test
 
+import java.util.concurrent.CopyOnWriteArrayList
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import java.util.concurrent.CopyOnWriteArrayList
 
 class RenderRecorder<T : Any?> {
 

@@ -18,6 +18,10 @@ import reactivecircus.flowbinding.android.view.clicks
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
+    companion object {
+        private const val CLICK_DEBOUNCE = 400L
+    }
+
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val homeViewModel: HomeViewModel by viewModel()
 
@@ -26,7 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.submitRepo
             .clicks()
-            .debounce(400)
+            .debounce(CLICK_DEBOUNCE)
             .map {
                 HomeViewIntent.AddGithubRepo(
                     repoName = binding.repoName.text.toString(),

@@ -1,9 +1,15 @@
 package com.github.pavlospt.refactoredumbrella.ui.home
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.pavlospt.refactoredumbrella.repo.AddRepoUseCase
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class HomeViewModel(
     private val addRepoUseCase: AddRepoUseCase
@@ -18,6 +24,7 @@ class HomeViewModel(
     init {
         _intentChannel
             .asFlow()
+            .distinctUntilChanged()
             .onEach { viewIntent ->
                 when (viewIntent) {
                     is HomeViewIntent.AddGithubRepo -> addGithubRepo(githubRepo = viewIntent)
