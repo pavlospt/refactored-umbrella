@@ -18,7 +18,8 @@ class RefreshGithubReposUseCase(
         get() = appCoroutineDispatchers.io
 
     override suspend fun run(params: Params) {
-        val remoteRepos = githubRemoteRepo.fetchGithubReposFor(username = params.username)
+        val remoteRepos: List<GithubRepoModel> =
+            githubRemoteRepo.fetchGithubReposFor(username = params.username)
         githubLocalRepo.updateRepos(
             updatedGithubRepoEntities = remoteRepos.map(GithubRepoConverter::convert)
         )
