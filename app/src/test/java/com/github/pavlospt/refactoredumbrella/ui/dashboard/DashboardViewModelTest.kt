@@ -1,0 +1,92 @@
+package com.github.pavlospt.refactoredumbrella.ui.dashboard
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.github.pavlospt.refactoredumbrella.db.GithubRepoEntity
+import com.github.pavlospt.refactoredumbrella.repo.GithubRepoModel
+import com.github.pavlospt.refactoredumbrella.repo.GithubRepoOwner
+import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
+import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
+import com.github.pavlospt.refactoredumbrella.test.*
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert.assertEquals
+import org.junit.Rule
+import org.junit.Test
+
+class DashboardViewModelTest : UnitTest() {
+
+    @get:Rule
+    val coroutinesTestRule = CoroutinesTestRule()
+
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Test
+    fun test_repo_refresh() = coroutinesTestRule.testDispatcher.runBlockingTest {
+        val remoteRepos = listOf(
+            GithubRepoModel(
+                id = 1,
+                name = "foo",
+                stars = 123,
+                url = "",
+                owner = GithubRepoOwner(
+                    avatarUrl = ""
+                )
+            ),
+            GithubRepoModel(
+                id = 2,
+                name = "bar",
+                stars = 432,
+                url = "",
+                owner = GithubRepoOwner(
+                    avatarUrl = ""
+                )
+            )
+        )
+        val mockGithubRemoteRepo = MockGithubRemoteRepo(fetchedRepos = remoteRepos)
+        val mockGithubLocalRepo = MockGithubLocalRepo(
+            observedGithubRepos = listOf(
+                GithubRepoEntity(
+                    internalId = null,
+                    remoteId = 1,
+                    name = "foo",
+                    stars = 123,
+                    url = "",
+                    ownerAvatarUrl = ""
+                ),
+                GithubRepoEntity(
+                    internalId = null,
+                    remoteId = 2,
+                    name = "bar",
+                    stars = 432,
+                    url = "",
+                    ownerAvatarUrl = ""
+                )
+            )
+        )
+
+        val refreshGithubRepoUseCase = RefreshGithubReposUseCase(
+            appCoroutineDispatchers = testAppCoroutineDispatchers,
+            githubRemoteRepo = mockGithubRemoteRepo,
+            githubLocalRepo = mockGithubLocalRepo
+        )
+
+        val observeGithubReposUseCase = ObserveGithubReposUseCase(
+            appCoroutineDispatchers = testAppCoroutineDispatchers,
+            githubLocalRepo = mockGithubLocalRepo
+        )
+
+        val vm = DashboardViewModel(
+            refreshGithubReposUseCase = refreshGithubRepoUseCase,
+            observeGithubReposUseCase = observeGithubReposUseCase
+        )
+
+        vm.processIntent(intentDashboard = DashboardViewIntent.Refresh)
+
+        vm.githubRepos.observeForTesting {
+            val (firstRepo, secondRepo) = vm.githubRepos.get
+
+            assertEquals(2, firstRepo.repoId)
+            assertEquals(1, secondRepo.repoId)
+        }
+    }
+}
