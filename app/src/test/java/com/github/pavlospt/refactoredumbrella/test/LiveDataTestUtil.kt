@@ -28,3 +28,6 @@ fun <T> LiveData<T>.observeForTesting(block: () -> Unit = {}) {
         removeObserver(observer)
     }
 }
+
+val <T> LiveData<T>.forceGet: T
+    get() = this.value!!

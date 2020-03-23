@@ -6,10 +6,10 @@ import com.github.pavlospt.refactoredumbrella.repo.GithubRepoModel
 import com.github.pavlospt.refactoredumbrella.repo.GithubRepoOwner
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
-import com.github.pavlospt.refactoredumbrella.test.CoroutinesTestRule
 import com.github.pavlospt.refactoredumbrella.test.MockGithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.test.MockGithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.test.UnitTest
+import com.github.pavlospt.refactoredumbrella.test.forceGet
 import com.github.pavlospt.refactoredumbrella.test.observeForTesting
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
@@ -17,9 +17,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class DashboardViewModelTest : UnitTest() {
-
-    @get:Rule
-    val coroutinesTestRule = CoroutinesTestRule()
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -87,7 +84,7 @@ class DashboardViewModelTest : UnitTest() {
         vm.processIntent(intentDashboard = DashboardViewIntent.Refresh)
 
         vm.githubRepos.observeForTesting {
-            val (firstRepo, secondRepo) = vm.githubRepos.get
+            val (firstRepo, secondRepo) = vm.githubRepos.forceGet
 
             assertEquals(2, firstRepo.repoId)
             assertEquals(1, secondRepo.repoId)

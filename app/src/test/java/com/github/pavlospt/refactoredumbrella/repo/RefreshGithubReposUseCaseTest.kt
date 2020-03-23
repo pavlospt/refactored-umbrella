@@ -17,37 +17,38 @@ class RefreshGithubReposUseCaseTest : UnitTest() {
     }
 
     @Test
-    fun should_fetch_remote_repos_and_add_them_locally() = runBlockingTest {
-        val remoteRepos = listOf(
-            GithubRepoModel(
-                id = 1,
-                name = "foo",
-                stars = 1,
-                url = "",
-                owner = GithubRepoOwner(
-                    avatarUrl = ""
-                )
-            ),
-            GithubRepoModel(
-                id = 2,
-                name = "bar",
-                stars = 2,
-                url = "",
-                owner = GithubRepoOwner(
-                    avatarUrl = ""
+    fun should_fetch_remote_repos_and_add_them_locally() =
+        coroutinesTestRule.testDispatcher.runBlockingTest {
+            val remoteRepos = listOf(
+                GithubRepoModel(
+                    id = 1,
+                    name = "foo",
+                    stars = 1,
+                    url = "",
+                    owner = GithubRepoOwner(
+                        avatarUrl = ""
+                    )
+                ),
+                GithubRepoModel(
+                    id = 2,
+                    name = "bar",
+                    stars = 2,
+                    url = "",
+                    owner = GithubRepoOwner(
+                        avatarUrl = ""
+                    )
                 )
             )
-        )
-        val githubRemoteRepo = MockGithubRemoteRepo(fetchedRepos = remoteRepos)
+            val githubRemoteRepo = MockGithubRemoteRepo(fetchedRepos = remoteRepos)
 
-        val useCase = RefreshGithubReposUseCase(
-            appCoroutineDispatchers = testAppCoroutineDispatchers,
-            githubLocalRepo = mockGithubLocalRepo,
-            githubRemoteRepo = githubRemoteRepo
-        )
+            val useCase = RefreshGithubReposUseCase(
+                appCoroutineDispatchers = testAppCoroutineDispatchers,
+                githubLocalRepo = mockGithubLocalRepo,
+                githubRemoteRepo = githubRemoteRepo
+            )
 
-        useCase.run(params = RefreshGithubReposUseCase.Params(username = "Foo"))
+            useCase.run(params = RefreshGithubReposUseCase.Params(username = "Foo"))
 
-        mockGithubLocalRepo.updateRepoRenders.assertRenderedOnce()
-    }
+            mockGithubLocalRepo.updateRepoRenders.assertRenderedOnce()
+        }
 }

@@ -12,36 +12,37 @@ import org.junit.Test
 class ObserveGithubReposUseCaseTest : UnitTest() {
 
     @Test
-    fun test_should_return_repos_from_local_repo() = runBlockingTest {
-        val localRepos = listOf(
-            GithubRepoEntity(
-                internalId = null,
-                remoteId = 1,
-                name = "foo",
-                stars = 123,
-                url = "",
-                ownerAvatarUrl = ""
-            ),
-            GithubRepoEntity(
-                internalId = null,
-                remoteId = 2,
-                name = "bar",
-                stars = 432,
-                url = "",
-                ownerAvatarUrl = ""
+    fun test_should_return_repos_from_local_repo() =
+        coroutinesTestRule.testDispatcher.runBlockingTest {
+            val localRepos = listOf(
+                GithubRepoEntity(
+                    internalId = null,
+                    remoteId = 1,
+                    name = "foo",
+                    stars = 123,
+                    url = "",
+                    ownerAvatarUrl = ""
+                ),
+                GithubRepoEntity(
+                    internalId = null,
+                    remoteId = 2,
+                    name = "bar",
+                    stars = 432,
+                    url = "",
+                    ownerAvatarUrl = ""
+                )
             )
-        )
-        val mockGithubLocalRepo = MockGithubLocalRepo(observedGithubRepos = localRepos)
+            val mockGithubLocalRepo = MockGithubLocalRepo(observedGithubRepos = localRepos)
 
-        val useCase = ObserveGithubReposUseCase(
-            appCoroutineDispatchers = testAppCoroutineDispatchers,
-            githubLocalRepo = mockGithubLocalRepo
-        )
+            val useCase = ObserveGithubReposUseCase(
+                appCoroutineDispatchers = testAppCoroutineDispatchers,
+                githubLocalRepo = mockGithubLocalRepo
+            )
 
-        useCase(Unit)
+            useCase(Unit)
 
-        launch {
-            useCase.observe().test { assertEquals(localRepos, expectItem()) }
+            launch {
+                useCase.observe().test { assertEquals(localRepos, expectItem()) }
+            }
         }
-    }
 }
