@@ -8,7 +8,7 @@ A `UseCase` can extend one of the following base classes:
 * `ScopedNoResultUseCase` - For `UseCase`s that will execute a given task, on a specified scope, without returning a `Result<T>`. The `UseCase` will `launch` its
 work in `workScope`.
 
-A `UseCase` constructor should accept an instance of `AppCoroutineDispatchers` (usually through DI), which describe the actual `Dispatcher`s for our application's 
+* A `UseCase` constructor should accept an instance of `AppCoroutineDispatchers` (usually through DI), which describe the actual `Dispatcher`s for our application's 
 runtime, or their counterparts when writing unit tests.
 
-A `UseCase` should only have dependencies on abstractions of local and/or remote repositories.
+* A `UseCase` should only have dependencies on abstractions of local and/or remote repositories.
