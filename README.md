@@ -15,3 +15,12 @@ The architecture of the project is following the MVVM pattern suggested by Andro
 - [Creating a new Repository](docs/NEW_REPOSITORY.md)
 - [Domain models & entities](docs/DOMAIN_MODELS_ENTITIES.md)
 - [Dependency Injection](docs/DI.md)
+
+## Testing
+
+The testing of the various components in the project follows the patterns details below:
+
+- [General guide](docs/testing/GENERAL_GUIDE.md)
+- [Testing a FlowUseCase](docs/testing/FLOW_USECASE.md)
+- [Testing a NoResultUseCase](docs/testing/NO_RESULT_USECASE.md)
+- [Testing a ViewModel](docs/testing/VIEW_MODEL.md)
