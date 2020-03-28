@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.github.pavlospt.refactoredumbrella.R
-import com.github.pavlospt.refactoredumbrella.adapter.ViewBindingAdapter
-import com.github.pavlospt.refactoredumbrella.adapter.ViewBindingViewHolder
+import com.github.pavlospt.refactoredumbrella.android.core.adapter.ViewBindingAdapter
+import com.github.pavlospt.refactoredumbrella.android.core.adapter.ViewBindingViewHolder
 import com.github.pavlospt.refactoredumbrella.databinding.ItemGithubRepoBinding
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.RepoItem

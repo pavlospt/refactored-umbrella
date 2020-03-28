@@ -1,4 +1,4 @@
-package com.github.pavlospt.refactoredumbrella.adapter
+package com.github.pavlospt.refactoredumbrella.android.core.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

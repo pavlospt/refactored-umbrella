@@ -1,2 +1,2 @@
 rootProject.name = "RefactoredUmbrella"
-include(":app")
+include(":app", ":android-core-adapter")

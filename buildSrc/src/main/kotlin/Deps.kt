@@ -34,6 +34,11 @@ object Deps {
             const val VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
             const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:$VERSION"
         }
+
+        object RecyclerView {
+            private const val VERSION = "1.2.0-alpha01"
+            const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:$VERSION"
+        }
     }
 
     object Google {

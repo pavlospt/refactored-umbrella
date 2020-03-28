@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.dsl.TestOptions
+import ext.androidCoreModule
 
 plugins {
     id("com.android.application")
@@ -35,6 +36,8 @@ android {
 dependencies {
     kapt(Deps.AndroidX.Room.COMPILER)
     kapt(Deps.Square.Moshi.KOTLIN_CODEGEN)
+
+    implementation(androidCoreModule("adapter"))
 
     implementation(kotlin("stdlib-jdk8"))
 

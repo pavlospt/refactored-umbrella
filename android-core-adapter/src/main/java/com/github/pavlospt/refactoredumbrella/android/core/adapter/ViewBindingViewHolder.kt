@@ -1,4 +1,4 @@
-package com.github.pavlospt.refactoredumbrella.adapter
+package com.github.pavlospt.refactoredumbrella.android.core.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
