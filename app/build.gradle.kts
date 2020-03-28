@@ -11,8 +11,13 @@ android {
         applicationId = "com.github.pavlospt.refactoredumbrella"
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("room.incremental", "true")
+            }
+        }
     }
 
     viewBinding.isEnabled = true
