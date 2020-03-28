@@ -11,13 +11,20 @@ checksum_file() {
 }
 
 FILES=()
+
+# Read Gradle related files
 while read -r -d ''; do
 	FILES+=("$REPLY")
-done < <(find . -type f \( -name "build.gradle*" -o -name "gradle-wrapper.properties" \) -print0)
+done < <(find . -type f \( -name "build.gradle.kts" -o -name "gradle-wrapper.properties" \) -print0)
+
+# Read dependencies related files
+while read -r -d ''; do
+	FILES+=("$REPLY")
+done < <(find buildSrc/src/main/kotlin -type f \( -name "*.kt" \) -print0)
 
 # Loop through files and append MD5 to result file
 for FILE in ${FILES[@]}; do
 	echo $(checksum_file $FILE) >> $RESULT_FILE
 done
-# Now sort the file so that it is 
+# Now sort the file so that it is
 sort $RESULT_FILE -o $RESULT_FILE
