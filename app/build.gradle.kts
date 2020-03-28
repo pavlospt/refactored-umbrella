@@ -38,6 +38,7 @@ dependencies {
     kapt(Deps.Square.Moshi.KOTLIN_CODEGEN)
 
     implementation(androidCoreModule("adapter"))
+    implementation(androidCoreModule("viewbinding"))
 
     implementation(kotlin("stdlib-jdk8"))
 

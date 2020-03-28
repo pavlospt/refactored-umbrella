@@ -1,4 +1,4 @@
-package com.github.pavlospt.refactoredumbrella.ext
+package com.github.pavlospt.refactoredumbrella.android.core.viewbinding
 
 import android.view.LayoutInflater
 import android.view.View
@@ -50,7 +50,7 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 }
 
 fun <T : ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T) =
-    FragmentViewBindingDelegate(this, viewBindingFactory)
+    FragmentViewBindingDelegate(fragment = this, viewBindingFactory = viewBindingFactory)
 
 inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
     crossinline bindingInflater: (LayoutInflater) -> T

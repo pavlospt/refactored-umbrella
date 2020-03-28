@@ -32,12 +32,23 @@ object Deps {
             const val RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:$VERSION"
             const val COMMON_JAVA8 = "androidx.lifecycle:lifecycle-common-java8:$VERSION"
             const val VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
+            const val LIVEDATA= "androidx.lifecycle:lifecycle-livedata:$VERSION"
             const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:$VERSION"
         }
 
         object RecyclerView {
             private const val VERSION = "1.2.0-alpha01"
             const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:$VERSION"
+        }
+
+        object Fragment {
+            private const val VERSION = "1.3.0-alpha02"
+            const val FRAGMENT = "androidx.fragment:fragment:$VERSION"
+        }
+
+        object AppCompat {
+            private const val VERSION = "1.2.0-alpha03"
+            const val APPCOMPAT = "androidx.appcompat:appcompat:$VERSION"
         }
     }
 

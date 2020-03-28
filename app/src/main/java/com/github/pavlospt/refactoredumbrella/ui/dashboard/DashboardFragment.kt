@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.github.pavlospt.refactoredumbrella.R
+import com.github.pavlospt.refactoredumbrella.android.core.viewbinding.viewBinding
 import com.github.pavlospt.refactoredumbrella.databinding.FragmentDashboardBinding
-import com.github.pavlospt.refactoredumbrella.ext.viewBinding
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.GithubRepoAdapter
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
 import kotlinx.coroutines.ExperimentalCoroutinesApi
