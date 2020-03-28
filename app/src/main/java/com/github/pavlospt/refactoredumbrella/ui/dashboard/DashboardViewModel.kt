@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class DashboardViewModel(
     private val refreshGithubReposUseCase: RefreshGithubReposUseCase,
     observeGithubReposUseCase: ObserveGithubReposUseCase

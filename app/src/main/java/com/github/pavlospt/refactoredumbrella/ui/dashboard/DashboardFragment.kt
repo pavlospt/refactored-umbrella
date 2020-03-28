@@ -10,12 +10,14 @@ import com.github.pavlospt.refactoredumbrella.databinding.FragmentDashboardBindi
 import com.github.pavlospt.refactoredumbrella.ext.viewBinding
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.GithubRepoAdapter
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter.items.GithubRepoItem
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private val dashboardViewModel by viewModel<DashboardViewModel>()

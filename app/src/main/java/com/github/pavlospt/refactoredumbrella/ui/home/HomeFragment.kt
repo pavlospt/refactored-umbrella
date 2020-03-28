@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.github.pavlospt.refactoredumbrella.R
 import com.github.pavlospt.refactoredumbrella.databinding.FragmentHomeBinding
 import com.github.pavlospt.refactoredumbrella.ext.viewBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -16,6 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.flowbinding.android.view.clicks
 
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     companion object {
