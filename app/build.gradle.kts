@@ -1,5 +1,6 @@
 import com.android.build.gradle.internal.dsl.TestOptions
 import ext.androidCoreModule
+import ext.coreModule
 
 plugins {
     id("com.android.application")
@@ -39,6 +40,8 @@ dependencies {
 
     implementation(androidCoreModule("adapter"))
     implementation(androidCoreModule("viewbinding"))
+
+    implementation(coreModule("result"))
 
     implementation(kotlin("stdlib-jdk8"))
 
