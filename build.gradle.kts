@@ -5,7 +5,6 @@ import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
-import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.diffplug.gradle.spotless.SpotlessExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -26,12 +25,8 @@ buildscript {
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt") version GradlePlugins.Versions.DETEKT apply false
+    id("io.gitlab.arturbosch.detekt") version GradlePlugins.Versions.DETEKT
     id("com.diffplug.gradle.spotless") version GradlePlugins.Versions.SPOTLESS apply false
-}
-
-tasks.withType<Detekt>().all {
-    jvmTarget = "1.8"
 }
 
 tasks.register<Delete>("clean") {
@@ -45,27 +40,60 @@ allprojects {
     }
 }
 
+val projectJvmTarget = JavaVersion.VERSION_1_8.toString()
+
+val analysisDir = files(projectDir)
+val configFiles = files("$rootDir/config/detekt/detekt.yml")
+
+val kotlinFiles = "**/*.kt"
+val kotlinScriptFiles = "**/*.kts"
+val resourceFiles = "**/resources/**"
+val buildFiles = "**/build/**"
+val depsFiles = "**/*Deps.kt"
+
 subprojects {
-    pluginManager.configureKotlinModules(subProject = project)
+    pluginManager.apply(DetektPlugin::class.java)
+
+    tasks.withType<Detekt> {
+        jvmTarget = projectJvmTarget
+    }
+
+    pluginManager.configureSpotlessIntegration(subProject = project)
+
+    tasks.withType<KotlinCompile> {
+        dependsOn("spotlessKotlinApply")
+        sourceCompatibility = projectJvmTarget
+        targetCompatibility = projectJvmTarget
+
+        kotlinOptions {
+            jvmTarget = projectJvmTarget
+            freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
+        }
+    }
+
     pluginManager.configureKaptCache(subProject = project)
     project.plugins.configureAppAndModules(subProject = project)
 }
 
-fun PluginManager.configureKotlinModules(subProject: Project) = apply {
-    val kotlinModulesConfiguration: (AppliedPlugin) -> Unit = {
-        subProject.pluginManager.apply(DetektPlugin::class.java)
-        subProject.configure<DetektExtension> {
-            toolVersion = GradlePlugins.Versions.DETEKT
-            input = subProject.files("src/main/java")
-            config = subProject.rootProject.files("config/detekt/detekt.yml")
-            failFast = true
-            reports {
-                val rootProjectDir = subProject.rootProject.projectDir
-                html.destination =
-                    subProject.file("$rootProjectDir/build/reports/detekt/detekt.html")
-                html.enabled = true
-            }
-        }
+val detektAll by tasks.registering(Detekt::class) {
+    description = "Runs the whole project at once."
+    parallel = true
+    config.setFrom(configFiles)
+    setSource(analysisDir)
+    include(kotlinFiles)
+    include(kotlinScriptFiles)
+    exclude(resourceFiles)
+    exclude(buildFiles)
+    exclude(depsFiles)
+    reports {
+        html.enabled = true
+        xml.enabled = false
+        txt.enabled = false
+    }
+}
+
+fun PluginManager.configureSpotlessIntegration(subProject: Project) = apply {
+    val spotlessConfiguration: (AppliedPlugin) -> Unit = {
         subProject.pluginManager.apply(SpotlessPlugin::class.java)
         subProject.configure<SpotlessExtension> {
             kotlin {
@@ -75,17 +103,10 @@ fun PluginManager.configureKotlinModules(subProject: Project) = apply {
                 endWithNewline()
             }
         }
-        subProject.tasks.withType<KotlinCompile>().configureEach {
-            dependsOn("spotlessKotlinApply")
-            kotlinOptions {
-                jvmTarget = "1.8"
-                freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
-            }
-        }
     }
 
-    withPlugin("kotlin-android", kotlinModulesConfiguration)
-    withPlugin("kotlin-jvm", kotlinModulesConfiguration)
+    withPlugin("org.jetbrains.kotlin.android", spotlessConfiguration)
+    withPlugin("org.jetbrains.kotlin.jvm", spotlessConfiguration)
 }
 
 fun PluginManager.configureKaptCache(subProject: Project) = apply {
