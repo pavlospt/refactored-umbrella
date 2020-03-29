@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/localrepo-github" />
             <option value="$PROJECT_DIR$/remoterepo-github" />
             <option value="$PROJECT_DIR$/ui-dashboard" />
+            <option value="$PROJECT_DIR$/ui-home" />
             <option value="$PROJECT_DIR$/usecase-github" />
           </set>
         </option>

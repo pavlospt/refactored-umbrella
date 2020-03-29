@@ -17,5 +17,6 @@ include(
 
     ":usecase-github",
 
-    ":ui-dashboard"
+    ":ui-dashboard",
+    ":ui-home"
 )

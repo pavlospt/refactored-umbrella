@@ -6,9 +6,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.github.pavlospt.refactoredumbrella.R
 import com.github.pavlospt.refactoredumbrella.android.core.viewbinding.viewBinding
-import com.github.pavlospt.refactoredumbrella.databinding.FragmentHomeBinding
+import com.github.pavlospt.refactoredumbrella.ui.home.databinding.FragmentHomeBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce

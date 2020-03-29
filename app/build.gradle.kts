@@ -60,6 +60,8 @@ dependencies {
 
     // Dashboard feature
     implementation(uiModule("dashboard"))
+    // Home feature
+    implementation(uiModule("home"))
 
     implementation(Deps.Kotlinx.Coroutines.CORE)
     implementation(Deps.Kotlinx.Coroutines.ANDROID)
