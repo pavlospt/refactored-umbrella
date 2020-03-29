@@ -2,12 +2,11 @@ package com.github.pavlospt.refactoredumbrella.android.core.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
 
 abstract class ViewBindingAdapter<Item : ViewBindingAdapterItem, VB : ViewBinding>(
-    diffCallback: DiffUtil.ItemCallback<Item>
+    diffCallback: ViewBindingDiffUtilCallback<Item>
 ) : ListAdapter<Item, ViewBindingViewHolder<Item, VB>>(diffCallback) {
     override fun onBindViewHolder(holder: ViewBindingViewHolder<Item, VB>, position: Int) =
         holder.bind(item = getItem(position))

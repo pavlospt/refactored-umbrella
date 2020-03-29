@@ -17,8 +17,13 @@ class GithubRepoAdapter :
         viewType: Int
     ): ViewBindingViewHolder<RepoItem, ItemGithubRepoBinding> {
         val inflater = parent.layoutInflater
-        val binding = ItemGithubRepoBinding.inflate(inflater, parent, false)
-        return GithubRepoViewHolder(binding)
+        return when (viewType) {
+            RepoItem.GITHUB_REPO_VIEW_TYPE -> {
+                val binding = ItemGithubRepoBinding.inflate(inflater, parent, false)
+                GithubRepoViewHolder(binding)
+            }
+            else -> throw IllegalStateException("Unknown viewType: $viewType")
+        }
     }
 
     inner class GithubRepoViewHolder(
