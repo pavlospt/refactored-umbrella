@@ -1,4 +1,4 @@
-package com.github.pavlospt.refactoredumbrella.interactor
+package com.github.pavlospt.refactoredumbrella.core.interactor
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

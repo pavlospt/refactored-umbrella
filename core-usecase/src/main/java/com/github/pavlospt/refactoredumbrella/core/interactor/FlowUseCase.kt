@@ -1,4 +1,4 @@
-package com.github.pavlospt.refactoredumbrella.interactor
+package com.github.pavlospt.refactoredumbrella.core.interactor
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview

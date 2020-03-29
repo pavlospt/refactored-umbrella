@@ -42,6 +42,7 @@ dependencies {
     implementation(androidCoreModule("viewbinding"))
 
     implementation(coreModule("result"))
+    implementation(coreModule("usecase"))
 
     implementation(kotlin("stdlib-jdk8"))
 

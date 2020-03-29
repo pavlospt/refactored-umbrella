@@ -1,7 +1,7 @@
 package com.github.pavlospt.refactoredumbrella.repo
 
+import com.github.pavlospt.refactoredumbrella.core.interactor.NoResultUseCase
 import com.github.pavlospt.refactoredumbrella.interactor.AppCoroutineDispatchers
-import com.github.pavlospt.refactoredumbrella.interactor.NoResultUseCase
 import com.github.pavlospt.refactoredumbrella.repo.local.GithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.repo.remote.GithubRemoteRepo
 import kotlinx.coroutines.CoroutineDispatcher
