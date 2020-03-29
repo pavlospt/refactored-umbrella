@@ -4,6 +4,7 @@ include(
     ":android-core-adapter",
     ":android-core-viewbinding",
 
+    ":core-dispatchers",
     ":core-result",
     ":core-usecase"
 )

@@ -1,8 +1,8 @@
 package com.github.pavlospt.refactoredumbrella.di
 
 import androidx.room.Room
+import com.github.pavlospt.refactoredumbrella.core.dispatchers.AppCoroutineDispatchers
 import com.github.pavlospt.refactoredumbrella.db.GithubAppDB
-import com.github.pavlospt.refactoredumbrella.interactor.AppCoroutineDispatchers
 import com.github.pavlospt.refactoredumbrella.repo.AddRepoUseCase
 import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase

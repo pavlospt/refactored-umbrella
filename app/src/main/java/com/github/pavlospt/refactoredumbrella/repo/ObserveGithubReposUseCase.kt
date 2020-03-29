@@ -1,8 +1,8 @@
 package com.github.pavlospt.refactoredumbrella.repo
 
+import com.github.pavlospt.refactoredumbrella.core.dispatchers.AppCoroutineDispatchers
 import com.github.pavlospt.refactoredumbrella.core.interactor.FlowUseCase
 import com.github.pavlospt.refactoredumbrella.db.GithubRepoEntity
-import com.github.pavlospt.refactoredumbrella.interactor.AppCoroutineDispatchers
 import com.github.pavlospt.refactoredumbrella.repo.local.GithubLocalRepo
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

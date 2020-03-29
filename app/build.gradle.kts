@@ -41,6 +41,7 @@ dependencies {
     implementation(androidCoreModule("adapter"))
     implementation(androidCoreModule("viewbinding"))
 
+    implementation(coreModule("dispatchers"))
     implementation(coreModule("result"))
     implementation(coreModule("usecase"))
 
