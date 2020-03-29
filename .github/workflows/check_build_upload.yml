@@ -56,7 +56,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Run Detekt
-        run: ./gradlew detekt
+        run: ./gradlew detektAll
       - name: Archive Detekt results
         uses: actions/upload-artifact@v1
         with:
