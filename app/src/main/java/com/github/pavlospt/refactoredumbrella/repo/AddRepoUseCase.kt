@@ -14,7 +14,6 @@ class AddRepoUseCase(
     data class Params(
         val repoName: String,
         val repoStars: Int
-
     )
 
     override val workDispatcher: CoroutineDispatcher
