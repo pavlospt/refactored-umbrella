@@ -43,6 +43,6 @@ dependencies {
     implementation(androidCoreModule("viewbinding"))
     implementation(coreModule("usecase"))
     implementation(coreModule("domain"))
-    implementation(dbModule("github"))
-    implementation(useCaseModule("github"))
+    implementation(dbModule(featureNotation = "github"))
+    implementation(useCaseModule(featureNotation = "github"))
 }

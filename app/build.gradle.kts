@@ -53,10 +53,10 @@ dependencies {
     implementation(coreModule("usecase"))
 
     // Github core stack
-    implementation(dbModule("github"))
-    implementation(localRepoModule("github"))
-    implementation(remoteRepoModule("github"))
-    implementation(useCaseModule("github"))
+    implementation(dbModule(featureNotation = "github"))
+    implementation(localRepoModule(featureNotation = "github"))
+    implementation(remoteRepoModule(featureNotation = "github"))
+    implementation(useCaseModule(featureNotation = "github"))
 
     // Dashboard feature
     implementation(uiModule("dashboard"))

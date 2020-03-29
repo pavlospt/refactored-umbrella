@@ -8,5 +8,5 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(Deps.Kotlinx.Coroutines.CORE)
-    implementation(dbModule("github"))
+    implementation(dbModule(featureNotation = "github"))
 }

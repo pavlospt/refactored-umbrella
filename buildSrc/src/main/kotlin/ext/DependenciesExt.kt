@@ -4,22 +4,22 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
 
 fun DependencyHandler.androidCoreModule(moduleNotation: String) =
-    project(":android-core-$moduleNotation")
+    project(":android-core:android-core-$moduleNotation")
 
 fun DependencyHandler.coreModule(moduleNotation: String) =
-    project(":core-$moduleNotation")
+    project(":core:core-$moduleNotation")
 
-fun DependencyHandler.dbModule(moduleNotation: String) =
-    project(":db-$moduleNotation")
+fun DependencyHandler.dbModule(featureNotation: String) =
+    project(":$featureNotation-stack:db-$featureNotation")
 
-fun DependencyHandler.localRepoModule(moduleNotation: String) =
-    project(":localrepo-$moduleNotation")
+fun DependencyHandler.localRepoModule(featureNotation: String) =
+    project(":$featureNotation-stack:localrepo-$featureNotation")
 
-fun DependencyHandler.remoteRepoModule(moduleNotation: String) =
-    project(":remoterepo-$moduleNotation")
+fun DependencyHandler.remoteRepoModule(featureNotation: String) =
+    project(":$featureNotation-stack:remoterepo-$featureNotation")
 
-fun DependencyHandler.useCaseModule(moduleNotation: String) =
-    project(":usecase-$moduleNotation")
+fun DependencyHandler.useCaseModule(featureNotation: String) =
+    project(":$featureNotation-stack:usecase-$featureNotation")
 
 fun DependencyHandler.uiModule(moduleNotation: String) =
-    project(":ui-$moduleNotation")
+    project(":ui:ui-$moduleNotation")

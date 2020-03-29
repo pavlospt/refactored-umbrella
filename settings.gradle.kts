@@ -1,22 +1,19 @@
 rootProject.name = "RefactoredUmbrella"
 include(
     ":app",
-    ":android-core-adapter",
-    ":android-core-viewbinding",
+    ":android-core:android-core-adapter",
+    ":android-core:android-core-viewbinding",
 
-    ":core-dispatchers",
-    ":core-domain",
-    ":core-result",
-    ":core-usecase",
+    ":core:core-dispatchers",
+    ":core:core-domain",
+    ":core:core-result",
+    ":core:core-usecase",
 
-    ":db-github",
+    ":github-stack:db-github",
+    ":github-stack:localrepo-github",
+    ":github-stack:remoterepo-github",
+    ":github-stack:usecase-github",
 
-    ":localrepo-github",
-
-    ":remoterepo-github",
-
-    ":usecase-github",
-
-    ":ui-dashboard",
-    ":ui-home"
+    ":ui:ui-dashboard",
+    ":ui:ui-home"
 )

@@ -10,20 +10,24 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/android-core-adapter" />
-            <option value="$PROJECT_DIR$/android-core-viewbinding" />
+            <option value="$PROJECT_DIR$/android-core" />
+            <option value="$PROJECT_DIR$/android-core/android-core-adapter" />
+            <option value="$PROJECT_DIR$/android-core/android-core-viewbinding" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/core-dispatchers" />
-            <option value="$PROJECT_DIR$/core-domain" />
-            <option value="$PROJECT_DIR$/core-result" />
-            <option value="$PROJECT_DIR$/core-usecase" />
-            <option value="$PROJECT_DIR$/db-github" />
-            <option value="$PROJECT_DIR$/localrepo-github" />
-            <option value="$PROJECT_DIR$/remoterepo-github" />
-            <option value="$PROJECT_DIR$/ui-dashboard" />
-            <option value="$PROJECT_DIR$/ui-home" />
-            <option value="$PROJECT_DIR$/usecase-github" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/core-dispatchers" />
+            <option value="$PROJECT_DIR$/core/core-domain" />
+            <option value="$PROJECT_DIR$/core/core-result" />
+            <option value="$PROJECT_DIR$/core/core-usecase" />
+            <option value="$PROJECT_DIR$/github-stack" />
+            <option value="$PROJECT_DIR$/github-stack/db-github" />
+            <option value="$PROJECT_DIR$/github-stack/localrepo-github" />
+            <option value="$PROJECT_DIR$/github-stack/remoterepo-github" />
+            <option value="$PROJECT_DIR$/github-stack/usecase-github" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/ui-dashboard" />
+            <option value="$PROJECT_DIR$/ui/ui-home" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
