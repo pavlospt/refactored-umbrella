@@ -1,5 +1,6 @@
 package com.github.pavlospt.refactoredumbrella.repo
 
+import com.github.pavlospt.refactoredumbrella.core.domain.DomainModelToEntityConverter
 import com.github.pavlospt.refactoredumbrella.db.GithubRepoEntity
 
 object GithubRepoConverter : DomainModelToEntityConverter<GithubRepoModel, GithubRepoEntity> {

@@ -1,5 +1,6 @@
 package com.github.pavlospt.refactoredumbrella.repo
 
+import com.github.pavlospt.refactoredumbrella.core.domain.DomainModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

@@ -2,6 +2,7 @@ package com.github.pavlospt.refactoredumbrella.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.github.pavlospt.refactoredumbrella.core.domain.DomainEntity
 
 const val GITHUB_REPO_TABLE_NAME = "github_users"
 
