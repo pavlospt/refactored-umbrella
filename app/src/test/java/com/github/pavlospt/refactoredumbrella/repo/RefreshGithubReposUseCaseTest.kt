@@ -1,12 +1,17 @@
 package com.github.pavlospt.refactoredumbrella.repo
 
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubRepoModel
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubRepoOwner
 import com.github.pavlospt.refactoredumbrella.test.MockGithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.test.MockGithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.test.UnitTest
+import com.github.pavlospt.refactoredumbrella.usecase.github.RefreshGithubReposUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class RefreshGithubReposUseCaseTest : UnitTest() {
 
     private val mockGithubLocalRepo = MockGithubLocalRepo()

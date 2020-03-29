@@ -1,7 +1,7 @@
 package com.github.pavlospt.refactoredumbrella.test
 
-import com.github.pavlospt.refactoredumbrella.db.GithubRepoEntity
-import com.github.pavlospt.refactoredumbrella.repo.local.GithubLocalRepo
+import com.github.pavlospt.refactoredumbrella.db.github.GithubRepoEntity
+import com.github.pavlospt.refactoredumbrella.localrepo.github.GithubLocalRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

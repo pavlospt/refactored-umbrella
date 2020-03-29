@@ -3,16 +3,16 @@ package com.github.pavlospt.refactoredumbrella.di
 import androidx.room.Room
 import com.github.pavlospt.refactoredumbrella.core.dispatchers.AppCoroutineDispatchers
 import com.github.pavlospt.refactoredumbrella.db.GithubAppDB
-import com.github.pavlospt.refactoredumbrella.repo.AddRepoUseCase
-import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
-import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
-import com.github.pavlospt.refactoredumbrella.repo.local.GithubLocalRepo
-import com.github.pavlospt.refactoredumbrella.repo.local.RealGithubLocalRepo
-import com.github.pavlospt.refactoredumbrella.repo.remote.GithubAPIService
-import com.github.pavlospt.refactoredumbrella.repo.remote.GithubRemoteRepo
-import com.github.pavlospt.refactoredumbrella.repo.remote.RealGithubRemoteRepo
+import com.github.pavlospt.refactoredumbrella.localrepo.github.GithubLocalRepo
+import com.github.pavlospt.refactoredumbrella.localrepo.github.RealGithubLocalRepo
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubAPIService
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubRemoteRepo
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.RealGithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.ui.dashboard.DashboardViewModel
 import com.github.pavlospt.refactoredumbrella.ui.home.HomeViewModel
+import com.github.pavlospt.refactoredumbrella.usecase.github.AddRepoUseCase
+import com.github.pavlospt.refactoredumbrella.usecase.github.ObserveGithubReposUseCase
+import com.github.pavlospt.refactoredumbrella.usecase.github.RefreshGithubReposUseCase
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import java.util.Date
@@ -34,8 +34,8 @@ val dbModule = module {
         ).fallbackToDestructiveMigration().build()
     }
 
-    single {
-        RealGithubLocalRepo(githubRepoDao = get<GithubAppDB>().githubRepoDAO()) as GithubLocalRepo
+    single<GithubLocalRepo> {
+        RealGithubLocalRepo(githubRepoDao = get<GithubAppDB>().githubRepoDAO())
     }
 }
 
@@ -58,10 +58,10 @@ val networkModule = module {
             .build()
     }
 
-    single {
+    single<GithubRemoteRepo> {
         RealGithubRemoteRepo(
             githubAPIService = get<Retrofit>().create(GithubAPIService::class.java)
-        ) as GithubRemoteRepo
+        )
     }
 }
 
@@ -99,7 +99,10 @@ val useCaseModule = module {
 
 val viewModelModule = module {
     viewModel {
-        DashboardViewModel(refreshGithubReposUseCase = get(), observeGithubReposUseCase = get())
+        DashboardViewModel(
+            refreshGithubReposUseCase = get(),
+            observeGithubReposUseCase = get()
+        )
     }
 
     viewModel { HomeViewModel(addRepoUseCase = get()) }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.pavlospt.refactoredumbrella.repo.AddRepoUseCase
+import com.github.pavlospt.refactoredumbrella.usecase.github.AddRepoUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -14,9 +14,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-class HomeViewModel(
-    private val addRepoUseCase: AddRepoUseCase
-) : ViewModel() {
+class HomeViewModel(private val addRepoUseCase: AddRepoUseCase) : ViewModel() {
 
     private val _intentChannel = ConflatedBroadcastChannel<HomeViewIntent>()
 
@@ -39,6 +37,10 @@ class HomeViewModel(
     suspend fun processIntent(intentHome: HomeViewIntent) = _intentChannel.send(intentHome)
 
     private suspend fun addGithubRepo(githubRepo: HomeViewIntent.AddGithubRepo) {
+        if (githubRepo.repoName.isBlank()) {
+            return
+        }
+
         addRepoUseCase(
             AddRepoUseCase.Params(
                 repoName = githubRepo.repoName,

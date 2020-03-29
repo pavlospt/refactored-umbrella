@@ -73,6 +73,7 @@ internal sealed class Event<out T> {
     data class Item<T>(val item: T) : Event<T>()
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class FlowAssert<T> internal constructor(
     private val events: Channel<Event<T>>,
     private val collectJob: Job,

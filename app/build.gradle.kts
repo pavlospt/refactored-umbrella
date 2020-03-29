@@ -1,6 +1,11 @@
 import com.android.build.gradle.internal.dsl.TestOptions
 import ext.androidCoreModule
 import ext.coreModule
+import ext.dbModule
+import ext.localRepoModule
+import ext.remoteRepoModule
+import ext.uiModule
+import ext.useCaseModule
 
 plugins {
     id("com.android.application")
@@ -36,7 +41,8 @@ android {
 
 dependencies {
     kapt(Deps.AndroidX.Room.COMPILER)
-    kapt(Deps.Square.Moshi.KOTLIN_CODEGEN)
+
+    implementation(kotlin("stdlib-jdk8"))
 
     implementation(androidCoreModule("adapter"))
     implementation(androidCoreModule("viewbinding"))
@@ -46,7 +52,14 @@ dependencies {
     implementation(coreModule("result"))
     implementation(coreModule("usecase"))
 
-    implementation(kotlin("stdlib-jdk8"))
+    // Github core stack
+    implementation(dbModule("github"))
+    implementation(localRepoModule("github"))
+    implementation(remoteRepoModule("github"))
+    implementation(useCaseModule("github"))
+
+    // Dashboard feature
+    implementation(uiModule("dashboard"))
 
     implementation(Deps.Kotlinx.Coroutines.CORE)
     implementation(Deps.Kotlinx.Coroutines.ANDROID)

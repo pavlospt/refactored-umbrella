@@ -7,5 +7,15 @@ include(
     ":core-dispatchers",
     ":core-domain",
     ":core-result",
-    ":core-usecase"
+    ":core-usecase",
+
+    ":db-github",
+
+    ":localrepo-github",
+
+    ":remoterepo-github",
+
+    ":usecase-github",
+
+    ":ui-dashboard"
 )

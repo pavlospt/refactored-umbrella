@@ -1,21 +1,22 @@
 package com.github.pavlospt.refactoredumbrella.ui.dashboard
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.github.pavlospt.refactoredumbrella.db.GithubRepoEntity
-import com.github.pavlospt.refactoredumbrella.repo.GithubRepoModel
-import com.github.pavlospt.refactoredumbrella.repo.GithubRepoOwner
-import com.github.pavlospt.refactoredumbrella.repo.ObserveGithubReposUseCase
-import com.github.pavlospt.refactoredumbrella.repo.RefreshGithubReposUseCase
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubRepoModel
+import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubRepoOwner
 import com.github.pavlospt.refactoredumbrella.test.MockGithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.test.MockGithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.test.UnitTest
 import com.github.pavlospt.refactoredumbrella.test.forceGet
 import com.github.pavlospt.refactoredumbrella.test.observeForTesting
+import com.github.pavlospt.refactoredumbrella.usecase.github.ObserveGithubReposUseCase
+import com.github.pavlospt.refactoredumbrella.usecase.github.RefreshGithubReposUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class DashboardViewModelTest : UnitTest() {
 
     @get:Rule
@@ -46,7 +47,7 @@ class DashboardViewModelTest : UnitTest() {
         val mockGithubRemoteRepo = MockGithubRemoteRepo(fetchedRepos = remoteRepos)
         val mockGithubLocalRepo = MockGithubLocalRepo(
             observedGithubRepos = listOf(
-                GithubRepoEntity(
+                com.github.pavlospt.refactoredumbrella.db.github.GithubRepoEntity(
                     internalId = null,
                     remoteId = 1,
                     name = "foo",
@@ -54,7 +55,7 @@ class DashboardViewModelTest : UnitTest() {
                     url = "",
                     ownerAvatarUrl = ""
                 ),
-                GithubRepoEntity(
+                com.github.pavlospt.refactoredumbrella.db.github.GithubRepoEntity(
                     internalId = null,
                     remoteId = 2,
                     name = "bar",
@@ -76,10 +77,11 @@ class DashboardViewModelTest : UnitTest() {
             githubLocalRepo = mockGithubLocalRepo
         )
 
-        val vm = DashboardViewModel(
-            refreshGithubReposUseCase = refreshGithubRepoUseCase,
-            observeGithubReposUseCase = observeGithubReposUseCase
-        )
+        val vm =
+            DashboardViewModel(
+                refreshGithubReposUseCase = refreshGithubRepoUseCase,
+                observeGithubReposUseCase = observeGithubReposUseCase
+            )
 
         vm.processIntent(intentDashboard = DashboardViewIntent.Refresh)
 
