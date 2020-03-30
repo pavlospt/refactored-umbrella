@@ -11,6 +11,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(Deps.Kotlinx.Coroutines.CORE)
+    implementation(Deps.Koin.CORE)
 
     implementation(coreModule("domain"))
     implementation(coreModule("dispatchers"))
