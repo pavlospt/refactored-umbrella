@@ -20,13 +20,14 @@ buildscript {
     }
     dependencies {
         classpath(GradlePlugins.ANDROID)
-        classpath(kotlin("gradle-plugin", version = GradlePlugins.Versions.KOTLIN))
+        classpath(kotlin(module = GradlePlugins.Kotlin.ID, version = GradlePlugins.Kotlin.VERSION))
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt") version GradlePlugins.Versions.DETEKT
-    id("com.diffplug.gradle.spotless") version GradlePlugins.Versions.SPOTLESS apply false
+    GradlePlugins.plugins.forEach { gradlePlugin ->
+        id(gradlePlugin.ID).version(gradlePlugin.VERSION).apply(gradlePlugin.APPLY)
+    }
 }
 
 tasks.register<Delete>("clean") {
