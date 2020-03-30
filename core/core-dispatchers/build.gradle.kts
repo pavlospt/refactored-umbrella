@@ -3,8 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib"))
     implementation(Deps.Kotlinx.Coroutines.CORE)
+    implementation(Deps.Kotlinx.Coroutines.ANDROID)
 
     implementation(Deps.Koin.CORE)
 }

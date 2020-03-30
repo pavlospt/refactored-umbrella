@@ -9,6 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(Deps.AndroidX.RecyclerView.RECYCLERVIEW)
+    implementation(kotlin("stdlib"))
+    api(Deps.AndroidX.RecyclerView.RECYCLERVIEW)
 }

@@ -9,14 +9,14 @@ plugins {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(Deps.Kotlinx.Coroutines.CORE)
-    implementation(Deps.Koin.CORE)
+    api(kotlin("stdlib"))
+    api(Deps.Koin.CORE)
+    api(Deps.Kotlinx.Coroutines.CORE)
 
-    implementation(coreModule("domain"))
-    implementation(coreModule("dispatchers"))
-    implementation(coreModule("usecase"))
-    implementation(dbModule(featureNotation = "github"))
-    implementation(localRepoModule(featureNotation = "github"))
-    implementation(remoteRepoModule(featureNotation = "github"))
+    api(coreModule("domain"))
+    api(coreModule("dispatchers"))
+    api(coreModule("usecase"))
+    api(dbModule(featureNotation = "github"))
+    api(remoteRepoModule(featureNotation = "github"))
+    api(localRepoModule(featureNotation = "github"))
 }

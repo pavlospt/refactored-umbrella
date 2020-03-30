@@ -26,7 +26,7 @@ object GradlePlugins {
 
     private object DependencyAnalysis : GradlePlugin {
         override val ID: String = "com.autonomousapps.dependency-analysis"
-        override val VERSION: String = "0.9.0"
+        override val VERSION: String = "0.32.0"
     }
 
     val plugins = listOf(Detekt, Spotless, DependencyAnalysis)

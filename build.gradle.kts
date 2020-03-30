@@ -30,6 +30,14 @@ plugins {
     }
 }
 
+dependencyAnalysis {
+    issues {
+        onUsedTransitiveDependencies {
+            fail("androidx.sqlite:sqlite", "androidx.drawerlayout:drawerlayout")
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(buildDir)
 }

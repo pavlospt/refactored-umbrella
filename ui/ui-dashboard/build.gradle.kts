@@ -1,5 +1,4 @@
 import ext.androidCoreModule
-import ext.coreModule
 import ext.dbModule
 import ext.useCaseModule
 
@@ -14,35 +13,31 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(Deps.AndroidX.Fragment.FRAGMENT)
-    implementation(Deps.AndroidX.RecyclerView.RECYCLERVIEW)
-    implementation(Deps.AndroidX.ConstraintLayout.CONSTRAINT_LAYOUT)
-    implementation(Deps.AndroidX.Lifecycle.RUNTIME)
+    api(kotlin("stdlib"))
+    implementation(Deps.Kotlinx.Coroutines.CORE)
+
+    api(Deps.AndroidX.Fragment.FRAGMENT)
+    api(Deps.AndroidX.RecyclerView.RECYCLERVIEW)
+    api(Deps.AndroidX.SwipeRefreshLayout.SWIPE_REFRESH_LAYOUT)
+    api(Deps.AndroidX.ConstraintLayout.CONSTRAINT_LAYOUT)
+
+    api(Deps.AndroidX.Lifecycle.VIEWMODEL)
+    api(Deps.AndroidX.Lifecycle.LIVEDATA_CORE)
     implementation(Deps.AndroidX.Lifecycle.RUNTIME_KTX)
-    implementation(Deps.AndroidX.Lifecycle.COMMON_JAVA8)
     implementation(Deps.AndroidX.Lifecycle.VIEWMODEL_KTX)
     implementation(Deps.AndroidX.Lifecycle.LIVEDATA_KTX)
-    implementation(Deps.AndroidX.Lifecycle.EXTENSIONS)
+    implementation(Deps.AndroidX.Lifecycle.COMMON)
 
-    implementation(Deps.FlowBinding.ANDROID)
     implementation(Deps.FlowBinding.SWIPE_REFRESH_LAYOUT)
 
-    implementation(Deps.Koin.CORE)
-    implementation(Deps.Koin.CORE_EXT)
-    implementation(Deps.Koin.ANDROID)
-    implementation(Deps.Koin.ANDROID_EXT)
-    implementation(Deps.Koin.ANDROIDX_SCOPE)
+    api(Deps.Koin.CORE)
     implementation(Deps.Koin.ANDROIDX_VIEWMODEL)
-    implementation(Deps.Koin.ANDROIDX_FRAGMENT)
-    implementation(Deps.Koin.ANDROIDX_EXT)
 
     implementation(Deps.Coil.COIL)
+    implementation(Deps.Coil.COIL_BASE)
 
-    implementation(androidCoreModule("adapter"))
-    implementation(androidCoreModule("viewbinding"))
-    implementation(coreModule("usecase"))
-    implementation(coreModule("domain"))
+    api(useCaseModule(featureNotation = "github"))
+    api(androidCoreModule(moduleNotation = "adapter"))
     implementation(dbModule(featureNotation = "github"))
-    implementation(useCaseModule(featureNotation = "github"))
+    implementation(androidCoreModule(moduleNotation = "viewbinding"))
 }

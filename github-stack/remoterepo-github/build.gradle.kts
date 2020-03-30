@@ -8,7 +8,7 @@ plugins {
 dependencies {
     kapt(Deps.Square.Moshi.KOTLIN_CODEGEN)
 
-    implementation(kotlin("stdlib-jdk8"))
+    api(kotlin("stdlib"))
     implementation(Deps.Square.Retrofit.RETROFIT)
     implementation(Deps.Square.Retrofit.Converters.MOSHI)
     implementation(Deps.Square.Moshi.KOTLIN)

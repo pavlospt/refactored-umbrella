@@ -9,10 +9,11 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(Deps.AndroidX.AppCompat.APPCOMPAT)
-    implementation(Deps.AndroidX.Fragment.FRAGMENT)
-    implementation(Deps.AndroidX.Lifecycle.RUNTIME)
+    api(kotlin("stdlib"))
+    api(Deps.AndroidX.AppCompat.APPCOMPAT)
+    api(Deps.AndroidX.Fragment.FRAGMENT)
+    implementation(Deps.AndroidX.Lifecycle.COMMON)
     implementation(Deps.AndroidX.Lifecycle.COMMON_JAVA8)
-    implementation(Deps.AndroidX.Lifecycle.LIVEDATA_KTX)
+    implementation(Deps.AndroidX.Lifecycle.LIVEDATA_CORE)
+    implementation(Deps.AndroidX.Lifecycle.LIVEDATA_CORE_KTX)
 }

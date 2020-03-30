@@ -19,9 +19,9 @@ android {
 dependencies {
     kapt(Deps.AndroidX.Room.COMPILER)
 
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(coreModule("domain"))
+    api(kotlin("stdlib"))
+    api(coreModule("domain"))
+    api(Deps.Kotlinx.Coroutines.CORE)
 
-    implementation(Deps.AndroidX.Room.RUNTIME)
-    implementation(Deps.AndroidX.Room.KTX)
+    implementation(Deps.AndroidX.Room.COMMON)
 }
