@@ -26,7 +26,7 @@ android {
         }
     }
 
-    viewBinding.isEnabled = true
+    buildFeatures.viewBinding = true
 
     buildTypes {
         getByName("release") {

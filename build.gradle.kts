@@ -132,21 +132,29 @@ fun PluginContainer.configureAppAndModules(subProject: Project) = apply {
             is AppPlugin -> {
                 subProject.extensions
                     .getByType<AppExtension>()
-                    .apply { applyAppCommons() }
+                    .applyAppCommons()
             }
             is LibraryPlugin -> {
                 subProject.extensions
                     .getByType<LibraryExtension>()
-                    .apply { applyLibraryCommons() }
+                    .applyLibraryCommons()
             }
         }
     }
 }
 
-fun AppExtension.applyAppCommons() = applyBaseCommons()
-fun LibraryExtension.applyLibraryCommons() = applyBaseCommons()
+fun AppExtension.applyAppCommons() = apply { applyBaseCommons()}
+fun LibraryExtension.applyLibraryCommons() = apply {
+    applyBaseCommons()
 
-fun BaseExtension.applyBaseCommons() {
+    onVariants.withBuildType("debug") {
+        androidTest {
+            enabled = false
+        }
+    }
+}
+
+fun BaseExtension.applyBaseCommons() = apply {
     compileSdkVersion(Android.Sdk.COMPILE)
 
     defaultConfig.apply {
