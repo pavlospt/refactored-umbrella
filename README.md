@@ -3,6 +3,7 @@
 Refactored Umbrella is a side project to check modern Android Development with Kotlin Coroutines & Flow, MVVM & Koin.
 
 ![CI](https://github.com/pavlospt/refactored-umbrella/workflows/CI/badge.svg)
+[![codebeat badge](https://codebeat.co/badges/c295fabe-b012-4eae-a36f-699951afba18)](https://codebeat.co/projects/github-com-pavlospt-refactored-umbrella-master)
 
 ## Architecture
 
