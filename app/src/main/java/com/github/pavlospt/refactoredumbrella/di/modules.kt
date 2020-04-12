@@ -1,6 +1,7 @@
 package com.github.pavlospt.refactoredumbrella.di
 
 import androidx.room.Room
+import com.github.pavlospt.refactoredumbrella.core.dispatchers.AppCoroutineDispatchers
 import com.github.pavlospt.refactoredumbrella.db.GithubAppDB
 import com.github.pavlospt.refactoredumbrella.localrepo.github.GithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.localrepo.github.RealGithubLocalRepo
@@ -9,6 +10,7 @@ import com.github.pavlospt.refactoredumbrella.remoterepo.github.GithubRemoteRepo
 import com.github.pavlospt.refactoredumbrella.remoterepo.github.RealGithubRemoteRepo
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
+import kotlinx.coroutines.asExecutor
 import java.util.Date
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,11 +21,17 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 val dbModule = module {
     single {
-        Room.databaseBuilder(
-            androidApplication(),
-            GithubAppDB::class.java,
-            GithubAppDB.DB_NAME
-        ).fallbackToDestructiveMigration().build()
+        val transactionQueryExecutor = get<AppCoroutineDispatchers>().io.asExecutor()
+        Room
+            .databaseBuilder(
+                androidApplication(),
+                GithubAppDB::class.java,
+                GithubAppDB.DB_NAME
+            )
+            .setQueryExecutor(transactionQueryExecutor)
+            .setTransactionExecutor(transactionQueryExecutor)
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     single<GithubLocalRepo> {
