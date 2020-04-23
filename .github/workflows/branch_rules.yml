@@ -1,0 +1,14 @@
+name: "Branch Rules"
+on: [create, delete]
+
+jobs:
+  create_delete_branch_rules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Branch Guardian
+        uses: infamous-riddles/branch-guardian@v1
+        with:
+          PERSONAL-ACCESS-TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          BASE-BRANCH-PATTERN: '^feature\/[a-zA-Z0-9]+$'
+          REQUIRED-STATUS-CHECKS: 'build,check,detekt'
+          RULES-LIMIT: 10
