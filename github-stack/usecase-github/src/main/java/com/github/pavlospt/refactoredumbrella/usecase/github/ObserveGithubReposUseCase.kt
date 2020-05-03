@@ -5,12 +5,16 @@ import com.github.pavlospt.refactoredumbrella.core.interactor.FlowUseCase
 import com.github.pavlospt.refactoredumbrella.db.github.GithubRepoEntity
 import com.github.pavlospt.refactoredumbrella.localrepo.github.GithubLocalRepo
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class ObserveGithubReposUseCase(
     private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val githubLocalRepo: GithubLocalRepo
-) : FlowUseCase<Unit, List<GithubRepoEntity>>() {
+) : FlowUseCase<List<GithubRepoEntity>, Unit>() {
 
     override val dispatcher: CoroutineDispatcher
         get() = appCoroutineDispatchers.io
