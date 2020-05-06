@@ -5,12 +5,13 @@ import com.github.pavlospt.refactoredumbrella.test.MockGithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.test.UnitTest
 import com.github.pavlospt.refactoredumbrella.test.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class ObserveGithubReposUseCaseTest : UnitTest() {
 
     @Test

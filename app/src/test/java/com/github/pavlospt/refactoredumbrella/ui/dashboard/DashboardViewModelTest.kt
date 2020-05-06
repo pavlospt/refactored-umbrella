@@ -11,12 +11,13 @@ import com.github.pavlospt.refactoredumbrella.test.observeForTesting
 import com.github.pavlospt.refactoredumbrella.usecase.github.ObserveGithubReposUseCase
 import com.github.pavlospt.refactoredumbrella.usecase.github.RefreshGithubReposUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class DashboardViewModelTest : UnitTest() {
 
     @get:Rule

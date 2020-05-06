@@ -10,8 +10,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 
-@ExperimentalCoroutinesApi
-@FlowPreview
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 abstract class FlowUseCase<Type : Any, Params : Any> : ObservableUseCase<Type> {
     private val channel = ConflatedBroadcastChannel<Params>()
 

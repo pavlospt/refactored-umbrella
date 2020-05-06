@@ -9,8 +9,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
-@ExperimentalCoroutinesApi
-@FlowPreview
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class ObserveGithubReposUseCase(
     private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val githubLocalRepo: GithubLocalRepo
