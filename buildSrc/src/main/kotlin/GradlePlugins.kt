@@ -20,7 +20,7 @@ object GradlePlugins {
 
     private object Spotless : GradlePlugin {
         override val ID: String = "com.diffplug.gradle.spotless"
-        override val VERSION: String = "3.28.0"
+        override val VERSION: String = "3.30.0"
         override val APPLY: Boolean = false
     }
 
