@@ -15,7 +15,7 @@ object GradlePlugins {
 
     private object Detekt : GradlePlugin {
         override val ID: String = "io.gitlab.arturbosch.detekt"
-        override val VERSION: String = "1.6.0"
+        override val VERSION: String = "1.8.0"
     }
 
     private object Spotless : GradlePlugin {
