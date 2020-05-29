@@ -2,5 +2,5 @@
     <string name="app_name">RefactoredUmbrella</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_poc">POC</string>
 </resources>

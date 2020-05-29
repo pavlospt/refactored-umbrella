@@ -10,6 +10,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -39,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Deps.AndroidX.Room.COMPILER)
 
     implementation(kotlin("stdlib"))

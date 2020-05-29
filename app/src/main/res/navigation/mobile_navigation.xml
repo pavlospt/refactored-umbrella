@@ -18,8 +18,7 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.github.pavlospt.refactoredumbrella.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_poc"
+        android:name="com.github.pavlospt.refactoredumbrella.ui.dashboard.POCFragment"
+        android:label="@string/title_poc" />
 </navigation>
