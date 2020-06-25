@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.dsl.TestOptions
 import ext.coreModule
 import ext.dbModule
 import ext.localRepoModule
@@ -34,8 +33,6 @@ android {
             proguardFiles("proguard-rules.pro")
         }
     }
-
-    testOptions { testOptions() }
 }
 
 dependencies {
@@ -86,16 +83,4 @@ dependencies {
     testImplementation(TestDeps.JUnit.JUNIT)
     testImplementation(TestDeps.Kotlinx.COROUTINES_TEST)
     testImplementation(TestDeps.AndroidX.Arch.CORE_TESTING)
-}
-
-fun Test.testLogging() {
-    testLogging {
-        events("passed", "skipped", "failed", "standardOut", "standardError")
-        outputs.upToDateWhen { false }
-        showStandardStreams = true
-    }
-}
-
-fun TestOptions.testOptions() {
-    unitTests.delegateClosureOf<Test> { testLogging() }
 }
