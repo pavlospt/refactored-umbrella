@@ -4,14 +4,14 @@ on:
   push:
     paths-ignore:
       - '**.md'
+env:
+  JAVA_TOOL_OPTIONS: -Xmx5120m
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process
+  TERM: dumb
 
 jobs:
   check:
     runs-on: ubuntu-latest
-    env:
-      JAVA_TOOL_OPTIONS: -Xmx5120m
-      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process
-      TERM: dumb
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
@@ -46,10 +46,6 @@ jobs:
 
   detekt:
     runs-on: ubuntu-latest
-    env:
-      JAVA_TOOL_OPTIONS: -Xmx5120m
-      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process
-      TERM: dumb
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
@@ -80,10 +76,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: [check, detekt]
-    env:
-      JAVA_TOOL_OPTIONS: -Xmx5120m
-      GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy=in-process
-      TERM: dumb
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
