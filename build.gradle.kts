@@ -73,7 +73,7 @@ subprojects {
     pluginManager.configureSpotlessIntegration(subProject = project)
 
     tasks.withType<KotlinCompile> {
-        dependsOn("spotlessKotlinApply")
+//        dependsOn("spotlessKotlinApply")
         sourceCompatibility = projectJvmTarget
         targetCompatibility = projectJvmTarget
 
