@@ -11,6 +11,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 buildscript {
+    val kotlin_version by extra("1.3.72")
     repositories {
         google()
         mavenCentral()
@@ -21,6 +22,8 @@ buildscript {
     dependencies {
         classpath(GradlePlugins.ANDROID)
         classpath(kotlin(module = GradlePlugins.Kotlin.ID, version = GradlePlugins.Kotlin.VERSION))
+        classpath("com.squareup.wire:wire-gradle-plugin:3.2.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 

@@ -15,5 +15,7 @@ include(
     ":github-stack:usecase-github",
 
     ":ui:ui-dashboard",
-    ":ui:ui-home"
+    ":ui:ui-home",
+
+    ":necessary-java-module"
 )

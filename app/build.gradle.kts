@@ -79,6 +79,8 @@ dependencies {
     implementation(Deps.Koin.CORE)
     implementation(Deps.Koin.ANDROID)
 
+    implementation(":necessary-java-module")
+
     // Test Deps
     testImplementation(TestDeps.JUnit.JUNIT)
     testImplementation(TestDeps.Kotlinx.COROUTINES_TEST)

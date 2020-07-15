@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="RefactoredUmbrella.android-core.android-core-adapter" target="1.8" />
+      <module name="RefactoredUmbrella.android-core.android-core-viewbinding" target="1.8" />
+      <module name="RefactoredUmbrella.app" target="1.8" />
+      <module name="RefactoredUmbrella.buildSrc" target="1.8" />
+      <module name="RefactoredUmbrella.core.core-dispatchers" target="1.8" />
+      <module name="RefactoredUmbrella.core.core-domain" target="1.8" />
+      <module name="RefactoredUmbrella.core.core-result" target="1.8" />
+      <module name="RefactoredUmbrella.core.core-usecase" target="1.8" />
+      <module name="RefactoredUmbrella.github-stack.db-github" target="1.8" />
+      <module name="RefactoredUmbrella.github-stack.localrepo-github" target="1.8" />
+      <module name="RefactoredUmbrella.github-stack.remoterepo-github" target="1.8" />
+      <module name="RefactoredUmbrella.github-stack.usecase-github" target="1.8" />
+      <module name="RefactoredUmbrella.ui.ui-dashboard" target="1.8" />
+      <module name="RefactoredUmbrella.ui.ui-home" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,0 +1,15 @@
+message Box {
+  Subscription subscription = 5;
+}
+
+message Subscription {
+  bool a = 1;
+  bool b = 2;
+  bool c = 3;
+  bool d = 4;
+  bool e = 5;
+  bool f = 6;
+  int32 g = 7;
+  int32 h = 8;
+  bool i = 9;
+}
