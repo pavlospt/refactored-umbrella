@@ -109,13 +109,13 @@ object Deps {
     }
 
     object Coil {
-        private const val VERSION = "0.9.5"
+        private const val VERSION = "1.0.0-rc3"
         const val COIL = "io.coil-kt:coil:$VERSION"
         const val COIL_BASE = "io.coil-kt:coil-base:$VERSION"
     }
 
     object FlowBinding {
-        private const val VERSION = "0.10.2"
+        private const val VERSION = "1.0.0-beta01"
         const val ANDROID = "io.github.reactivecircus.flowbinding:flowbinding-android:$VERSION"
         const val SWIPE_REFRESH_LAYOUT =
             "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$VERSION"
