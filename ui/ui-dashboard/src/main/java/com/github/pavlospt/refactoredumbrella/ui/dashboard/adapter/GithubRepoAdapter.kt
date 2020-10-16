@@ -1,7 +1,7 @@
 package com.github.pavlospt.refactoredumbrella.ui.dashboard.adapter
 
 import android.view.ViewGroup
-import coil.api.load
+import coil.load
 import coil.transform.CircleCropTransformation
 import com.github.pavlospt.refactoredumbrella.android.core.adapter.ViewBindingAdapter
 import com.github.pavlospt.refactoredumbrella.android.core.adapter.ViewBindingViewHolder
