@@ -34,12 +34,12 @@ jobs:
       - name: Run all checks
         run: ./gradlew spotlessKotlinCheck testDebugUnitTest :app:lintDebug
       - name: Archive Lint results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: lint-report.html
           path: app/build/reports/lint-results-debug.html
       - name: Archive Test results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: test-report.html
           path: app/build/reports/tests/testDebugUnitTest/index.html
@@ -68,7 +68,7 @@ jobs:
       - name: Run Detekt
         run: ./gradlew detektAll
       - name: Archive Detekt results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: detekt-report.html
           path: build/reports/detekt/detekt.html
@@ -98,7 +98,7 @@ jobs:
       - name: Build APK
         run: ./gradlew :app:assembleDebug
       - name: Upload APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: app-debug.apk
           path: app/build/outputs/apk/debug/app-debug.apk
