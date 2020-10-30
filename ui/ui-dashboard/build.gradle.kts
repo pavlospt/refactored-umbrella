@@ -1,5 +1,7 @@
 import ext.androidCoreModule
+import ext.composeLibrary
 import ext.dbModule
+import ext.uiModule
 import ext.useCaseModule
 
 plugins {
@@ -10,7 +12,10 @@ plugins {
 
 android {
     buildFeatures.viewBinding = true
+    buildFeatures.compose = true
 }
+
+composeLibrary()
 
 dependencies {
     api(kotlin("stdlib"))
@@ -40,4 +45,5 @@ dependencies {
     api(androidCoreModule(moduleNotation = "adapter"))
     implementation(dbModule(featureNotation = "github"))
     implementation(androidCoreModule(moduleNotation = "viewbinding"))
+    implementation(uiModule(moduleNotation = "design-system"))
 }

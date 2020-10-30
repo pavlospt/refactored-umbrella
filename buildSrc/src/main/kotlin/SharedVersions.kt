@@ -6,6 +6,10 @@ object SharedVersions {
     }
 
     object Kotlinx {
-        const val COROUTINES = "1.4.0-M1"
+        const val COROUTINES = "1.4.0"
+    }
+
+    object Compose {
+        const val COMPOSE = "1.0.0-alpha06"
     }
 }

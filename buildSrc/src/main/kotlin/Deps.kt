@@ -19,7 +19,7 @@ object Deps {
         }
 
         object Navigation {
-            private const val VERSION = "2.2.1"
+            private const val VERSION = "2.3.1"
             const val FRAGMENT = "androidx.navigation:navigation-fragment:$VERSION"
             const val UI = "androidx.navigation:navigation-ui:$VERSION"
             const val UI_KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
@@ -45,12 +45,12 @@ object Deps {
         }
 
         object Fragment {
-            private const val VERSION = "1.3.0-alpha02"
+            private const val VERSION = "1.3.0-beta01"
             const val FRAGMENT = "androidx.fragment:fragment:$VERSION"
         }
 
         object AppCompat {
-            private const val VERSION = "1.2.0-alpha03"
+            private const val VERSION = "1.3.0-alpha02"
             const val APPCOMPAT = "androidx.appcompat:appcompat:$VERSION"
         }
 
@@ -63,9 +63,21 @@ object Deps {
 
     object Google {
         object Material {
-            private const val VERSION = "1.2.0-alpha05"
+            private const val VERSION = "1.3.0-alpha03"
             const val MATERIAL = "com.google.android.material:material:$VERSION"
         }
+    }
+
+    object Compose {
+        private const val VERSION = SharedVersions.Compose.COMPOSE
+        const val UI_TOOLING = "androidx.ui:ui-tooling:$VERSION"
+        const val UI = "androidx.compose.ui:ui:$VERSION"
+        const val FOUNDATION = "androidx.compose.foundation:foundation:$VERSION"
+        const val MATERIAL = "androidx.compose.material:material:$VERSION"
+        const val MATERIAL_ICONS_CORE = "androidx.compose.material:material-icons-core:$VERSION"
+        const val MATERIAL_ICONS_EXTENDED =
+            "androidx.compose.material:material-icons-extended:$VERSION"
+        const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:$VERSION"
     }
 
     object Kotlinx {
