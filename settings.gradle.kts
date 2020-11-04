@@ -16,5 +16,6 @@ include(
 
     ":ui:ui-dashboard",
     ":ui:ui-home",
-    ":ui:ui-design-system"
+    ":ui:ui-design-system",
+    ":ui:ui-navigation"
 )

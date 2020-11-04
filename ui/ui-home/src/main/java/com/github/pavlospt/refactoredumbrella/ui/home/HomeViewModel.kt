@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.pavlospt.refactoredumbrella.usecase.github.AddRepoUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -17,7 +18,7 @@ class HomeViewModel(private val addRepoUseCase: AddRepoUseCase) : ViewModel() {
 
     private val _intentChannel = MutableStateFlow<HomeViewIntent>(HomeViewIntent.NotEmitted)
 
-    private val _uiEvents: MutableLiveData<HomeUIEvent> = MutableLiveData()
+    private val _uiEvents: MutableLiveData<HomeUIEvent> = MutableLiveData(HomeUIEvent.None)
     val uiEvents: LiveData<HomeUIEvent>
         get() = _uiEvents
 
@@ -50,5 +51,10 @@ class HomeViewModel(private val addRepoUseCase: AddRepoUseCase) : ViewModel() {
         )
 
         _uiEvents.value = HomeUIEvent.RepoAdded
+
+        // Artificial delay to clean up the queue in LiveData
+        delay(600L)
+
+        _uiEvents.value = HomeUIEvent.None
     }
 }

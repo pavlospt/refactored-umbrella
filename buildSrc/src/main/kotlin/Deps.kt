@@ -20,7 +20,7 @@ object Deps {
 
         object Navigation {
             private const val VERSION = "2.3.1"
-            const val FRAGMENT = "androidx.navigation:navigation-fragment:$VERSION"
+            const val FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:$VERSION"
             const val UI = "androidx.navigation:navigation-ui:$VERSION"
             const val UI_KTX = "androidx.navigation:navigation-ui-ktx:$VERSION"
             const val RUNTIME = "androidx.navigation:navigation-runtime:$VERSION"
@@ -54,6 +54,11 @@ object Deps {
             const val APPCOMPAT = "androidx.appcompat:appcompat:$VERSION"
         }
 
+        object Annotation {
+            private const val VERSION = "1.2.0-alpha01"
+            const val ANNOTATION = "androidx.annotation:annotation:$VERSION"
+        }
+
         object SwipeRefreshLayout {
             private const val VERSION = "1.1.0-beta01"
             const val SWIPE_REFRESH_LAYOUT =
@@ -70,6 +75,7 @@ object Deps {
 
     object Compose {
         private const val VERSION = SharedVersions.Compose.COMPOSE
+        private const val NAVIGATION_VERSION = "1.0.0-alpha01"
         const val UI_TOOLING = "androidx.ui:ui-tooling:$VERSION"
         const val UI = "androidx.compose.ui:ui:$VERSION"
         const val FOUNDATION = "androidx.compose.foundation:foundation:$VERSION"
@@ -78,6 +84,8 @@ object Deps {
         const val MATERIAL_ICONS_EXTENDED =
             "androidx.compose.material:material-icons-extended:$VERSION"
         const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:$VERSION"
+        const val RUNTIME = "androidx.compose.runtime:runtime:$VERSION"
+        const val NAVIGATION = "androidx.navigation:navigation-compose:$NAVIGATION_VERSION"
     }
 
     object Kotlinx {

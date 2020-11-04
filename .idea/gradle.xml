@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/ui/ui-dashboard" />
             <option value="$PROJECT_DIR$/ui/ui-design-system" />
             <option value="$PROJECT_DIR$/ui/ui-home" />
+            <option value="$PROJECT_DIR$/ui/ui-navigation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

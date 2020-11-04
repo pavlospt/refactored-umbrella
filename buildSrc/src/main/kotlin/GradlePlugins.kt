@@ -1,5 +1,5 @@
 object GradlePlugins {
-    const val ANDROID = "com.android.tools.build:gradle:4.2.0-alpha13"
+    const val ANDROID = "com.android.tools.build:gradle:4.2.0-alpha15"
 
     interface GradlePlugin {
         val ID: String

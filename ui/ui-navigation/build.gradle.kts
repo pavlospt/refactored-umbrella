@@ -9,3 +9,7 @@ plugins {
 android.buildFeatures.compose = true
 
 composeProject()
+
+dependencies {
+    implementation(Deps.AndroidX.Annotation.ANNOTATION)
+}

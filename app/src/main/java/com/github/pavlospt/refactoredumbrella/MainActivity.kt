@@ -2,24 +2,33 @@ package com.github.pavlospt.refactoredumbrella
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.compose.ui.platform.setContent
+import androidx.navigation.compose.composable
+import com.github.pavlospt.refactoredumbrella.navigation.NavRoute
+import com.github.pavlospt.refactoredumbrella.ui.dashboard.DashboardScreen
+import com.github.pavlospt.refactoredumbrella.ui.dashboard.DashboardViewModel
+import com.github.pavlospt.refactoredumbrella.ui.home.HomeScreen
+import com.github.pavlospt.refactoredumbrella.ui.home.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private val dashboardViewModel: DashboardViewModel by viewModel()
+    private val homeViewModel: HomeViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home, R.id.navigation_dashboard)
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        setContent {
+            MainScreen(
+                navGraphBuilder = {
+                    composable(NavRoute.Home.route) {
+                        HomeScreen(homeViewModel = homeViewModel)
+                    }
+                    composable(NavRoute.Dashboard.route) {
+                        DashboardScreen(dashboardViewModel = dashboardViewModel)
+                    }
+                })
+        }
     }
 }
