@@ -10,7 +10,7 @@ object GradlePlugins {
 
     object Kotlin : GradlePlugin {
         override val ID = "gradle-plugin"
-        override val VERSION = "1.4.10"
+        override val VERSION = "1.4.20"
     }
 
     private object Detekt : GradlePlugin {
