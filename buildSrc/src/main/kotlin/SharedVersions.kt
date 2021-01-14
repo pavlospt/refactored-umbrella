@@ -10,6 +10,6 @@ object SharedVersions {
     }
 
     object Compose {
-        const val COMPOSE = "1.0.0-alpha06"
+        const val COMPOSE = "1.0.0-alpha08"
     }
 }

@@ -1,6 +1,5 @@
 package com.github.pavlospt.refactoredumbrella.ui.home
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,9 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedTask
@@ -20,7 +19,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.navigate
@@ -43,22 +41,22 @@ fun HomeScreen(
     Scaffold(topBar = { TopAppBar(title = { Text("Home") }) }) {
         Column(verticalArrangement = Arrangement.Top) {
             Row(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
-                OutlinedTextField(
-                    value = repoName.value,
-                    modifier = Modifier.fillMaxWidth(),
-                    keyboardType = KeyboardType.Text,
-                    label = { Text(text = "Repo name") },
-                    onValueChange = { newValue -> repoName.value = newValue }
-                )
+//                OutlinedTextField(
+//                    value = repoName.value,
+//                    modifier = Modifier.fillMaxWidth(),
+//                    keyboardType = KeyboardType.Text,
+//                    label = { Text(text = "Repo name") },
+//                    onValueChange = { newValue -> repoName.value = newValue }
+//                )
             }
             Row(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
-                OutlinedTextField(
-                    value = repoStars.value,
-                    modifier = Modifier.fillMaxWidth(),
-                    keyboardType = KeyboardType.Number,
-                    label = { Text(text = "Repo stars") },
-                    onValueChange = { newValue -> repoStars.value = newValue }
-                )
+//                OutlinedTextField(
+//                    value = repoStars.value,
+//                    modifier = Modifier.fillMaxWidth(),
+//                    keyboardType = KeyboardType.Number,
+//                    label = { Text(text = "Repo stars") },
+//                    onValueChange = { newValue -> repoStars.value = newValue }
+//                )
             }
             Row(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
                 Button(

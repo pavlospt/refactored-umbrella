@@ -1,7 +1,7 @@
 object Deps {
     object AndroidX {
         object Room {
-            private const val VERSION = "2.2.5"
+            private const val VERSION = "2.3.0-SNAPSHOT"
             const val COMPILER = "androidx.room:room-compiler:$VERSION"
             const val RUNTIME = "androidx.room:room-runtime:$VERSION"
             const val COMMON = "androidx.room:room-common:$VERSION"
@@ -76,7 +76,6 @@ object Deps {
     object Compose {
         private const val VERSION = SharedVersions.Compose.COMPOSE
         private const val NAVIGATION_VERSION = "1.0.0-alpha01"
-        const val UI_TOOLING = "androidx.ui:ui-tooling:$VERSION"
         const val UI = "androidx.compose.ui:ui:$VERSION"
         const val FOUNDATION = "androidx.compose.foundation:foundation:$VERSION"
         const val MATERIAL = "androidx.compose.material:material:$VERSION"

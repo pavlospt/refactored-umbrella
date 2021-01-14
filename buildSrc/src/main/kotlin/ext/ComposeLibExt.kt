@@ -5,7 +5,6 @@ import org.gradle.kotlin.dsl.dependencies
 
 fun Project.composeProject() {
     dependencies {
-        "implementation"(Deps.Compose.UI_TOOLING)
         "implementation"(Deps.Compose.UI)
         "implementation"(Deps.Compose.FOUNDATION)
         "implementation"(Deps.Compose.MATERIAL)

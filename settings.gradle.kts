@@ -1,3 +1,10 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+}
+
 rootProject.name = "RefactoredUmbrella"
 include(
     ":app",

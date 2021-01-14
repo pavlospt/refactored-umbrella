@@ -1,5 +1,5 @@
 object GradlePlugins {
-    const val ANDROID = "com.android.tools.build:gradle:4.2.0-alpha15"
+    const val ANDROID = "com.android.tools.build:gradle:4.2.0-beta03"
 
     interface GradlePlugin {
         val ID: String
@@ -11,6 +11,11 @@ object GradlePlugins {
     object Kotlin : GradlePlugin {
         override val ID = "gradle-plugin"
         override val VERSION = "1.4.20"
+    }
+
+    object KSP : GradlePlugin {
+        override val ID: String = "com.google.devtools.ksp"
+        override val VERSION: String = "1.4.20-dev-experimental-20210111"
     }
 
     private object Detekt : GradlePlugin {
@@ -26,7 +31,7 @@ object GradlePlugins {
 
     private object DependencyAnalysis : GradlePlugin {
         override val ID: String = "com.autonomousapps.dependency-analysis"
-        override val VERSION: String = "0.62.0"
+        override val VERSION: String = "0.70.0"
     }
 
     val plugins = listOf(Detekt, Spotless, DependencyAnalysis)
