@@ -70,13 +70,15 @@ subprojects {
     pluginManager.configureSpotlessIntegration(subProject = project)
 
     tasks.withType<KotlinCompile> {
-        dependsOn("spotlessKotlinApply")
+        tasks.findByName("spotlessKotlinApply")
+            ?.let { dependsOn(it) }
         sourceCompatibility = projectJvmTarget
         targetCompatibility = projectJvmTarget
 
         kotlinOptions {
             jvmTarget = projectJvmTarget
             freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
+            useIR = true
         }
     }
 
@@ -102,7 +104,8 @@ val detektAll by tasks.registering(Detekt::class) {
 }
 
 fun PluginManager.configureSpotlessIntegration(subProject: Project) = apply {
-    val spotlessConfiguration: (AppliedPlugin) -> Unit = {
+    val spotlessConfiguration: (AppliedPlugin) -> Unit = spotless@{
+        if (subProject.name.contains("design-system")) return@spotless
         subProject.pluginManager.apply(SpotlessPlugin::class.java)
         subProject.configure<SpotlessExtension> {
             kotlin {
@@ -143,7 +146,7 @@ fun PluginContainer.configureAppAndModules(subProject: Project) = apply {
     }
 }
 
-fun AppExtension.applyAppCommons() = apply { applyBaseCommons()}
+fun AppExtension.applyAppCommons() = apply { applyBaseCommons() }
 fun LibraryExtension.applyLibraryCommons() = apply {
     applyBaseCommons()
 
@@ -155,11 +158,18 @@ fun LibraryExtension.applyLibraryCommons() = apply {
 }
 
 fun BaseExtension.applyBaseCommons() = apply {
+    val composeVersion = SharedVersions.Compose.COMPOSE
+
     compileSdkVersion(Android.Sdk.COMPILE)
 
     defaultConfig.apply {
         minSdkVersion(Android.Sdk.MIN)
         targetSdkVersion(Android.Sdk.TARGET)
+
+        composeOptions {
+            kotlinCompilerVersion = "1.4.0"
+            kotlinCompilerExtensionVersion = composeVersion
+        }
     }
 
     compileOptions.apply {

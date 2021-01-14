@@ -1,3 +1,4 @@
+import ext.composeProject
 import ext.coreModule
 import ext.dbModule
 import ext.localRepoModule
@@ -10,6 +11,8 @@ plugins {
     kotlin("android")
     kotlin("kapt")
 }
+
+composeProject()
 
 android {
     defaultConfig {
@@ -26,6 +29,7 @@ android {
     }
 
     buildFeatures.viewBinding = true
+    buildFeatures.compose = true
 
     buildTypes {
         getByName("release") {
@@ -52,17 +56,12 @@ dependencies {
     implementation(uiModule("dashboard"))
     // Home feature
     implementation(uiModule("home"))
+    // Navigation feature
+    implementation(uiModule("navigation"))
 
     implementation(Deps.Kotlinx.Coroutines.CORE)
 
-    implementation(Deps.AndroidX.ConstraintLayout.CONSTRAINT_LAYOUT)
-
     implementation(Deps.AndroidX.AppCompat.APPCOMPAT)
-    implementation(Deps.AndroidX.Navigation.FRAGMENT) { because("We use defaultNavHost") }
-    implementation(Deps.AndroidX.Navigation.UI)
-    implementation(Deps.AndroidX.Navigation.UI_KTX)
-    implementation(Deps.AndroidX.Navigation.RUNTIME)
-    implementation(Deps.AndroidX.Navigation.RUNTIME_KTX)
     implementation(Deps.AndroidX.Room.RUNTIME)
     implementation(Deps.AndroidX.Room.COMMON)
     implementation(Deps.AndroidX.Room.ROOM_KTX)
@@ -78,6 +77,7 @@ dependencies {
 
     implementation(Deps.Koin.CORE)
     implementation(Deps.Koin.ANDROID)
+    implementation(Deps.Koin.ANDROIDX_VIEWMODEL)
 
     // Test Deps
     testImplementation(TestDeps.JUnit.JUNIT)

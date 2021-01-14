@@ -7,34 +7,36 @@ import androidx.lifecycle.viewModelScope
 import com.github.pavlospt.refactoredumbrella.usecase.github.AddRepoUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class HomeViewModel(private val addRepoUseCase: AddRepoUseCase) : ViewModel() {
 
-    private val _intentChannel = ConflatedBroadcastChannel<HomeViewIntent>()
+    private val _intentChannel = MutableStateFlow<HomeViewIntent>(HomeViewIntent.NotEmitted)
 
-    private val _uiEvents: MutableLiveData<HomeUIEvent> = MutableLiveData()
+    private val _uiEvents: MutableLiveData<HomeUIEvent> = MutableLiveData(HomeUIEvent.None)
     val uiEvents: LiveData<HomeUIEvent>
         get() = _uiEvents
 
     init {
         _intentChannel
-            .asFlow()
-            .distinctUntilChanged()
+            .asStateFlow()
             .onEach { viewIntent ->
                 when (viewIntent) {
                     is HomeViewIntent.AddGithubRepo -> addGithubRepo(githubRepo = viewIntent)
+                    else -> Unit
                 }
             }
             .launchIn(viewModelScope)
     }
 
-    suspend fun processIntent(intentHome: HomeViewIntent) = _intentChannel.send(intentHome)
+    fun processIntent(intentHome: HomeViewIntent) {
+        _intentChannel.value = intentHome
+    }
 
     private suspend fun addGithubRepo(githubRepo: HomeViewIntent.AddGithubRepo) {
         if (githubRepo.repoName.isBlank()) {
@@ -49,5 +51,10 @@ class HomeViewModel(private val addRepoUseCase: AddRepoUseCase) : ViewModel() {
         )
 
         _uiEvents.value = HomeUIEvent.RepoAdded
+
+        // Artificial delay to clean up the queue in LiveData
+        delay(600L)
+
+        _uiEvents.value = HomeUIEvent.None
     }
 }
