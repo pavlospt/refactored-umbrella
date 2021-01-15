@@ -6,6 +6,7 @@ import ext.uiModule
 import ext.useCaseModule
 
 plugins {
+    id("com.google.devtools.ksp") version("1.4.20-dev-experimental-20210111")
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
@@ -17,12 +18,6 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        kapt {
-            arguments {
-                arg("room.incremental", "true")
-            }
-        }
     }
 
     buildFeatures.viewBinding = true
@@ -36,7 +31,7 @@ android {
 }
 
 dependencies {
-    kapt(Deps.AndroidX.Room.COMPILER)
+    ksp(Deps.AndroidX.Room.COMPILER)
 
     implementation(kotlin("stdlib"))
 

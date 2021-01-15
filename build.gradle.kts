@@ -1,7 +1,7 @@
-import com.android.build.gradle.AppExtension
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
+import com.android.build.api.extension.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryPlugin
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
@@ -45,6 +45,7 @@ tasks.register<Delete>("clean") {
 allprojects {
     repositories {
         google()
+        maven("https://androidx.dev/snapshots/builds/7081083/artifacts/repository")
         jcenter()
     }
 }
@@ -128,33 +129,32 @@ fun PluginManager.configureKaptCache(subProject: Project) = apply {
 
 fun PluginContainer.configureAppAndModules(subProject: Project) = apply {
     whenPluginAdded {
+        val subprojectExtensions = subProject.extensions
         when (this) {
             is AppPlugin -> {
-                subProject.extensions
-                    .getByType<AppExtension>()
-                    .applyAppCommons()
+                with(subprojectExtensions) {
+                    getByType<BaseExtension>().setupAndroidCommons()
+                }
             }
             is LibraryPlugin -> {
-                subProject.extensions
-                    .getByType<LibraryExtension>()
-                    .applyLibraryCommons()
+                with(subprojectExtensions) {
+                    getByType<LibraryAndroidComponentsExtension>().disableAndroidTests()
+                    getByType<BaseExtension>().setupAndroidCommons()
+                }
             }
         }
     }
 }
 
-fun AppExtension.applyAppCommons() = apply { applyBaseCommons()}
-fun LibraryExtension.applyLibraryCommons() = apply {
-    applyBaseCommons()
-
-    onVariants.withBuildType("debug") {
-        androidTest {
-            enabled = false
+fun LibraryAndroidComponentsExtension.disableAndroidTests() = apply {
+    fun LibraryExtension.applyLibraryCommons() = apply {
+        beforeAndroidTest(selector().withBuildType("debug")) {
+            it.enabled = false
         }
     }
 }
 
-fun BaseExtension.applyBaseCommons() = apply {
+fun BaseExtension.setupAndroidCommons() = apply {
     compileSdkVersion(Android.Sdk.COMPILE)
 
     defaultConfig.apply {
