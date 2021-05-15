@@ -15,4 +15,11 @@ object TestDeps {
                 "androidx.arch.core:core-testing:${SharedVersions.AndroidX.Arch.CORE}"
         }
     }
+
+    object CashApp {
+        object Turbine {
+            private const val VERSION = "0.5.0"
+            const val TURBINE = "app.cash.turbine:turbine:$VERSION"
+        }
+    }
 }

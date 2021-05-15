@@ -32,7 +32,7 @@ dependencies {
     implementation(Deps.FlowBinding.ANDROID)
 
     api(Deps.Koin.CORE)
-    implementation(Deps.Koin.ANDROIDX_VIEWMODEL)
+    implementation(Deps.Koin.ANDROID)
 
     implementation(androidCoreModule("viewbinding"))
     api(useCaseModule(featureNotation = "github"))
