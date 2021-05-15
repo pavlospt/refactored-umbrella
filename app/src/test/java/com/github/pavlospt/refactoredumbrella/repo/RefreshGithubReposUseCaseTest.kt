@@ -30,18 +30,14 @@ class RefreshGithubReposUseCaseTest : UnitTest() {
                     name = "foo",
                     stars = 1,
                     url = "",
-                    owner = GithubRepoOwner(
-                        avatarUrl = ""
-                    )
+                    owner = GithubRepoOwner(avatarUrl = "")
                 ),
                 GithubRepoModel(
                     id = 2,
                     name = "bar",
                     stars = 2,
                     url = "",
-                    owner = GithubRepoOwner(
-                        avatarUrl = ""
-                    )
+                    owner = GithubRepoOwner(avatarUrl = "")
                 )
             )
             val githubRemoteRepo = MockGithubRemoteRepo(fetchedRepos = remoteRepos)

@@ -76,11 +76,11 @@ dependencies {
     implementation(Deps.Square.Moshi.MOSHI)
     implementation(Deps.Square.Moshi.ADAPTERS)
 
-    implementation(Deps.Koin.CORE)
     implementation(Deps.Koin.ANDROID)
 
     // Test Deps
     testImplementation(TestDeps.JUnit.JUNIT)
     testImplementation(TestDeps.Kotlinx.COROUTINES_TEST)
     testImplementation(TestDeps.AndroidX.Arch.CORE_TESTING)
+    testImplementation(TestDeps.CashApp.Turbine.TURBINE)
 }

@@ -31,7 +31,7 @@ dependencies {
     implementation(Deps.FlowBinding.SWIPE_REFRESH_LAYOUT)
 
     api(Deps.Koin.CORE)
-    implementation(Deps.Koin.ANDROIDX_VIEWMODEL)
+    implementation(Deps.Koin.ANDROID)
 
     implementation(Deps.Coil.COIL)
     implementation(Deps.Coil.COIL_BASE)

@@ -1,9 +1,10 @@
 package com.github.pavlospt.refactoredumbrella.repo
 
+import app.cash.turbine.test
 import com.github.pavlospt.refactoredumbrella.db.github.GithubRepoEntity
 import com.github.pavlospt.refactoredumbrella.test.MockGithubLocalRepo
 import com.github.pavlospt.refactoredumbrella.test.UnitTest
-import com.github.pavlospt.refactoredumbrella.test.test
+import kotlin.time.ExperimentalTime
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
@@ -11,7 +12,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class, ExperimentalTime::class)
 class ObserveGithubReposUseCaseTest : UnitTest() {
 
     @Test

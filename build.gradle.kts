@@ -3,19 +3,17 @@ import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
+import com.android.build.api.extension.LibraryAndroidComponentsExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.diffplug.gradle.spotless.SpotlessExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 buildscript {
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()
-        jcenter()
 
     }
     dependencies {
@@ -32,8 +30,10 @@ plugins {
 
 dependencyAnalysis {
     issues {
-        onUsedTransitiveDependencies {
-            fail("androidx.sqlite:sqlite", "androidx.drawerlayout:drawerlayout")
+        all {
+            onAny {
+                exclude("androidx.sqlite:sqlite", "androidx.drawerlayout:drawerlayout")
+            }
         }
     }
 }
@@ -45,11 +45,12 @@ tasks.register<Delete>("clean") {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
-val projectJvmTarget = JavaVersion.VERSION_1_8.toString()
+val projectJvmTarget = JavaVersion.VERSION_1_8
+val projectJvmTargetString = projectJvmTarget.toString()
 
 val analysisDir = files(projectDir)
 val configFiles = files("$rootDir/config/detekt/detekt.yml")
@@ -64,23 +65,22 @@ subprojects {
     pluginManager.apply(DetektPlugin::class.java)
 
     tasks.withType<Detekt> {
-        jvmTarget = projectJvmTarget
+        jvmTarget = projectJvmTargetString
     }
 
     pluginManager.configureSpotlessIntegration(subProject = project)
 
     tasks.withType<KotlinCompile> {
         dependsOn("spotlessKotlinApply")
-        sourceCompatibility = projectJvmTarget
-        targetCompatibility = projectJvmTarget
+        sourceCompatibility = projectJvmTargetString
+        targetCompatibility = projectJvmTargetString
 
         kotlinOptions {
-            jvmTarget = projectJvmTarget
+            jvmTarget = projectJvmTargetString
             freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
         }
     }
 
-    pluginManager.configureKaptCache(subProject = project)
     project.plugins.configureAppAndModules(subProject = project)
 }
 
@@ -118,23 +118,16 @@ fun PluginManager.configureSpotlessIntegration(subProject: Project) = apply {
     withPlugin("org.jetbrains.kotlin.jvm", spotlessConfiguration)
 }
 
-fun PluginManager.configureKaptCache(subProject: Project) = apply {
-    withPlugin("kotlin-kapt") {
-        subProject.extensions
-            .getByType<KaptExtension>()
-            .apply { useBuildCache = true }
-    }
-}
-
 fun PluginContainer.configureAppAndModules(subProject: Project) = apply {
     whenPluginAdded {
         when (this) {
             is AppPlugin -> {
                 subProject.extensions
                     .getByType<AppExtension>()
-                    .applyAppCommons()
+                    .applyBaseCommons()
             }
             is LibraryPlugin -> {
+                subProject.disableAndroidTests()
                 subProject.extensions
                     .getByType<LibraryExtension>()
                     .applyLibraryCommons()
@@ -143,16 +136,16 @@ fun PluginContainer.configureAppAndModules(subProject: Project) = apply {
     }
 }
 
-fun AppExtension.applyAppCommons() = apply { applyBaseCommons()}
-fun LibraryExtension.applyLibraryCommons() = apply {
-    applyBaseCommons()
-
-    onVariants.withBuildType("debug") {
-        androidTest {
-            enabled = false
-        }
+fun Project.disableAndroidTests() {
+    val extension = project.extensions
+        .getByName("androidComponents") as LibraryAndroidComponentsExtension
+    extension.beforeAndroidTests(extension.selector().withBuildType("debug")) {
+        it.enabled = false
     }
 }
+
+fun AppExtension.applyAppCommons() = apply { applyBaseCommons()}
+fun LibraryExtension.applyLibraryCommons() = apply { applyBaseCommons() }
 
 fun BaseExtension.applyBaseCommons() = apply {
     compileSdkVersion(Android.Sdk.COMPILE)
@@ -163,7 +156,7 @@ fun BaseExtension.applyBaseCommons() = apply {
     }
 
     compileOptions.apply {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = projectJvmTarget
+        targetCompatibility = projectJvmTarget
     }
 }
