@@ -9,7 +9,7 @@ object Deps {
         }
 
         object ConstraintLayout {
-            private const val VERSION = "2.1.0-beta02"
+            private const val VERSION = "2.1.4"
             const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:$VERSION"
         }
 
