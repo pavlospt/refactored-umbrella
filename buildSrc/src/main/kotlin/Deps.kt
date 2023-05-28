@@ -103,7 +103,7 @@ object Deps {
     }
 
     object Coil {
-        private const val VERSION = "1.2.1"
+        private const val VERSION = "1.4.0"
         const val COIL = "io.coil-kt:coil:$VERSION"
         const val COIL_BASE = "io.coil-kt:coil-base:$VERSION"
     }
