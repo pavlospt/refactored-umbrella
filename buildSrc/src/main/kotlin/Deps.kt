@@ -23,7 +23,7 @@ object Deps {
         }
 
         object Lifecycle {
-            private const val VERSION = "2.4.0-alpha01"
+            private const val VERSION = "2.6.1"
             const val COMMON = "androidx.lifecycle:lifecycle-common:$VERSION"
             const val RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:$VERSION"
             const val COMMON_JAVA8 = "androidx.lifecycle:lifecycle-common-java8:$VERSION"
