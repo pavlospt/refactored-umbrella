@@ -1,7 +1,7 @@
 object Deps {
     object AndroidX {
         object Room {
-            private const val VERSION = "2.4.0-alpha02"
+            private const val VERSION = "2.5.2"
             const val COMPILER = "androidx.room:room-compiler:$VERSION"
             const val RUNTIME = "androidx.room:room-runtime:$VERSION"
             const val COMMON = "androidx.room:room-common:$VERSION"
