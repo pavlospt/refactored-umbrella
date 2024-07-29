@@ -5,6 +5,9 @@ Refactored Umbrella is a side project to check modern Android Development with K
 ![CI](https://github.com/pavlospt/refactored-umbrella/workflows/CI/badge.svg)
 [![codebeat badge](https://codebeat.co/badges/c295fabe-b012-4eae-a36f-699951afba18)](https://codebeat.co/projects/github-com-pavlospt-refactored-umbrella-master)
 
+If you like my work, consider buying me a coffee 😄 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pavlospt)
+
 ## Architecture
 
 The architecture of the project is following the MVVM pattern suggested by Android Architecture Components.
